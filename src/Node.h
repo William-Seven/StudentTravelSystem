@@ -14,9 +14,9 @@ class Node {
    public:
     // 节点类型枚举
     enum Type {
-        BUILDING,  // 建筑、景点、场所
-        FACILITY,  // 设施
-        NONE
+        BUILDING = 1,  // 建筑、景点、场所
+        FACILITY = 2,  // 设施
+        NONE = 0
     };
 
     int id;                    // 节点的唯一标识
