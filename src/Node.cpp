@@ -33,6 +33,14 @@ void Node::setDescription(const std::string& description) {
     this->description = description;
 }
 
+double Node::getDistance() const {
+    return distance;
+}
+
+void Node::setDistance(double length) {
+    this->distance = length;
+}
+
 void Node::addEdge(Edge* edge) {
     edges.push_back(edge);
 }

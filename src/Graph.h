@@ -17,10 +17,10 @@ class Graph {
     ~Graph();
 
     // 添加节点
-    void addNode(int id, Node::Type type, const std::string& name);
+    void addNode(int id, Node::Type type, const std::string& name, const std::string& description);
 
     // 添加边
-    //void addEdge(const int& from, const int& to, double distance);
+    // void addEdge(const int& from, const int& to, double distance);
     void addEdge(const int& from, const int& to, double distance, double congestion, double speed, TransportMode transportMode = TransportMode::WALK);
 
     // 获取节点

@@ -15,9 +15,9 @@ Graph::~Graph() {
 }
 
 // 添加节点
-void Graph::addNode(int id, Node::Type type, const std::string& name) {
+void Graph::addNode(int id, Node::Type type, const std::string& name, const std::string& description) {
     if (nodes.find(id) == nullptr) {
-        Node* newNode = new Node(id, type, name);
+        Node* newNode = new Node(id, type, name, description);
         nodes.insert(id, newNode);
     } else {
         std::cout << nodes.find(id) << std::endl;

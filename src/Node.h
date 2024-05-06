@@ -24,9 +24,10 @@ class Node {
     std::string name;          // 节点的名称
     std::vector<Edge*> edges;  // 与该节点相连的边
     std::string description;   // 节点的描述信息
+    double distance;           // 与当前搜索位置的距离
 
     // 构造函数
-    Node(int id, Type type, const std::string& name, const std::string& description = "");
+    Node(int id, Type type, const std::string& name, const std::string& description);
 
     // 析构函数
     ~Node();  // 释放edges中的边指针
@@ -45,6 +46,12 @@ class Node {
 
     // 设置节点描述
     void setDescription(const std::string& description);
+
+    // 获取与当前位置的距离
+    double getDistance() const;
+
+    // 设置与当前位置的距离
+    void setDistance(double distance);
 
     // 添加边
     void addEdge(Edge* edge);

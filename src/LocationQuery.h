@@ -11,13 +11,15 @@ class LocationQuery {
    private:
     Graph& graph;
     std::vector<Node*> facilities;
+    // std::vector<double> distances;
 
    public:
     explicit LocationQuery(Graph& graph);
 
     void loadFacilities();
     std::vector<Node*> findNearbyFacilities(Node* location, double radius);
-    std::vector<Node> filterResultsByCategory(const std::vector<Node>& results, const std::string& category);
+    std::vector<Node*> filterResultsByCategory(std::vector<Node*> results, std::string& category);
+    std::vector<Node*> sortFacilitiesByDistance(std::vector<Node*>& facilities, int low, int high);
 };
 
 #endif  // LOCATIONQUERY_H
