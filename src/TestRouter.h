@@ -1,3 +1,4 @@
+#include <iomanip>
 #include <iostream>
 #include <string>
 #include "Algorithms.h"
@@ -30,58 +31,80 @@ void RouterTest() {
     g.addNode(20, Node::Type::BUILDING, "行政楼", "行政楼");
 
     // 添加边，包括距离、拥挤度和速度
-    g.addEdge(0, 1, 100, 0.1, 40);
-    g.addEdge(0, 2, 50, 0.2, 40);
-    g.addEdge(1, 3, 30, 0.3, 30);
-    g.addEdge(1, 4, 70, 0.2, 35);
-    g.addEdge(2, 6, 60, 0.4, 30);
-    g.addEdge(3, 5, 50, 0.1, 40);
-    g.addEdge(4, 5, 20, 0.1, 45);
-    g.addEdge(6, 7, 100, 0.9, 50);
+    g.addEdge(0, 1, 101, 0.1, 40);
+    g.addEdge(0, 2, 15, 0.5, 40);
+    g.addEdge(1, 3, 35, 0.9, 30);
+    g.addEdge(1, 4, 78, 0.2, 35);
+    g.addEdge(2, 6, 60, 0.4, 20);
+    g.addEdge(3, 5, 500, 0.0, 40);
+    g.addEdge(4, 5, 24, 0.1, 5);
+    g.addEdge(6, 7, 100, 0.9, 150);
     g.addEdge(5, 7, 80, 0.2, 40);
-    g.addEdge(3, 4, 100, 0.1, 40);
+    g.addEdge(3, 4, 200, 0.1, 40);
     g.addEdge(3, 5, 150, 0.2, 35);
     g.addEdge(4, 6, 120, 0.3, 30);
-    g.addEdge(4, 7, 80, 0.1, 45);
-    g.addEdge(5, 8, 90, 0.2, 40);
-    g.addEdge(5, 9, 70, 0.4, 35);
+    g.addEdge(4, 7, 86, 0.1, 45);
+    g.addEdge(5, 8, 95, 0.2, 40);
+    g.addEdge(5, 9, 79, 0.4, 35);
     g.addEdge(6, 10, 50, 0.1, 50);
-    g.addEdge(6, 11, 60, 0.3, 45);
-    g.addEdge(7, 12, 100, 0.2, 40);
-    g.addEdge(7, 13, 120, 0.1, 45);
+    g.addEdge(6, 11, 60, 0.4, 45);
+    g.addEdge(7, 12, 100, 0.2, 4);
+    g.addEdge(7, 13, 124, 0.1, 45);
     g.addEdge(8, 14, 80, 0.3, 30);
     g.addEdge(8, 15, 110, 0.2, 35);
     g.addEdge(9, 16, 70, 0.1, 40);
     g.addEdge(9, 17, 90, 0.4, 45);
-    g.addEdge(10, 18, 60, 0.3, 50);
+    g.addEdge(10, 18, 67, 0.3, 50);
     g.addEdge(10, 19, 40, 0.2, 45);
-    g.addEdge(11, 20, 100, 0.1, 40);
+    g.addEdge(11, 20, 125, 0.1, 45);
     g.addEdge(11, 12, 80, 0.3, 35);
-    g.addEdge(12, 13, 50, 0.2, 40);
-    g.addEdge(12, 14, 120, 0.1, 50);
+    g.addEdge(12, 13, 50, 0.2, 90);
+    g.addEdge(12, 14, 120, 0.9, 50);
     g.addEdge(13, 15, 90, 0.4, 35);
-    g.addEdge(13, 16, 70, 0.3, 40);
+    g.addEdge(13, 16, 78, 0.9, 70);
     g.addEdge(14, 17, 110, 0.2, 45);
-    g.addEdge(14, 18, 80, 0.1, 50);
-    g.addEdge(15, 19, 120, 0.3, 35);
-    g.addEdge(15, 20, 100, 0.2, 40);
+    g.addEdge(14, 18, 80, 0.0, 50);
+    g.addEdge(15, 19, 120, 0.3, 55);
+    g.addEdge(15, 20, 100, 0.7, 40);
+
+    // 用户输入
+    std::cout << "请输入起点和终点：" << std::endl;
+    int from, to;
+    std::cin >> from >> to;
+
+    Node* n1 = g.getNode(from);
+    Node* n2 = g.getNode(to);
+    std::cout << "起点：" << n1->getName() << "\n终点：" << n2->getName() << std::endl;
 
     // 使用算法寻找最短路径
-    Algorithms::PathResult shortestPathResult = Algorithms::findShortestPath(g, 0, 7);
+    Algorithms::PathResult shortestPathResult = Algorithms::findShortestPath(g, from, to);
 
     // 打印结果
-    std::cout << "Shortest path length: " << shortestPathResult.length << std::endl;
+    std::cout << "Shortest path length: " << shortestPathResult.length << " meters" << std::endl;
+    int flag = 0;
     for (int nodeID : shortestPathResult.path) {
-        std::cout << nodeID << " ";
+        if (flag == 0) {
+            std::cout << nodeID;
+            flag = 1;
+        } else {
+            std::cout << " --> " << nodeID;
+        }
     }
     std::cout << std::endl;
 
     // 使用算法寻找最快路径
-    Algorithms::PathResult fastestPathResult = Algorithms::findFastestPath(g, 0, 7);
+    Algorithms::PathResult fastestPathResult = Algorithms::findFastestPath(g, from, to);
 
     // 输出结果
-    std::cout << "Fastest path time: " << fastestPathResult.time << std::endl;
-    for (int nodeID : fastestPathResult.path)
-        std::cout << nodeID << " ";
+    std::cout << "Fastest path time: " << std::fixed << std::setprecision(1) << fastestPathResult.time << " minutes" << std::endl;
+    flag = 0;
+    for (int nodeID : fastestPathResult.path) {
+        if (flag == 0) {
+            std::cout << nodeID;
+            flag = 1;
+        } else {
+            std::cout << " --> " << nodeID;
+        }
+    }
     std::cout << std::endl;
 }

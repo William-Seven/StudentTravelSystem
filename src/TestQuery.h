@@ -86,7 +86,7 @@ void QueryTest() {
     // 输出查询结果
     std::cout << "Facilities within " << searchRadius << " m radius:" << std::endl;
     for (const auto& facility : nearbyFacilities) {
-        std::cout << "Facility Name: " << facility->getName() << "    Distance: " << facility->getDistance() << std::endl;
+        std::cout << "Facility Name: " << facility->getName() << "    Distance: " << facility->getDistance() << " meters" << std::endl;
     }
 
     // 过滤查询结果
@@ -99,7 +99,7 @@ void QueryTest() {
     // 输出过滤后的结果
     std::cout << "\nFiltered Facilities (Type - " << interestedType << "):" << std::endl;
     for (const auto& facility : filteredFacilities) {
-        std::cout << "Facility Name: " << facility->getName() << "    Distance: " << facility->getDistance() << std::endl;
+        std::cout << "Facility Name: " << facility->getName() << "    Distance: " << facility->getDistance() << " meters" << std::endl;
     }
 
     std::string interestedType1 = "卫生间";
@@ -108,6 +108,6 @@ void QueryTest() {
     // 输出过滤后的结果
     std::cout << "\nFiltered Facilities (Type - " << interestedType1 << "):" << std::endl;
     for (const auto& facility : filteredFacilities1) {
-        std::cout << "Facility Name: " << facility->getName() << "    Distance: " << facility->getDistance() << std::endl;
+        std::cout << "Facility Name: " << facility->getName() << "    Distance: " << facility->getDistance() << " meters" << std::endl;
     }
 }

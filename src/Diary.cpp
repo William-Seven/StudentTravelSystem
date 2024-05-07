@@ -19,7 +19,7 @@ void Diary::DiaryPrint() {
     std::cout << "Destination: " << destination << std::endl;
     std::cout << "Content: " << content << std::endl;
     std::cout << "Popularity: " << popularity << std::endl;
-    std::cout << "Rating: " << rating << std::endl;
+    std::cout << "Rating: " << ((double)rating) / 10000 << std::endl;
     std::cout << std::endl;
 }
 

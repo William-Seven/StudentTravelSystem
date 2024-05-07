@@ -5,24 +5,66 @@
 void DiaryTest() {
     DiaryManager diaryManager;
 
-    Diary diary1("HomeDisire", "666", "北京邮电大学", "I want to go back to shenzhen!");
-    Diary diary2("NoFunAnyMore", "250", "北京邮电大学", "Here is not fun!");
-    Diary diary3("ShitWeather", "555", "北京首都机场", "My plane was cancelled because of the fxxking weather!");
-    Diary diary4("SoooooooTired", "555", "北京首都机场", "I want to SLEEP!!!!!!!!!!!!!!!!!");
+    Diary diary1("HomeDisire", "2022211", "北京邮电大学Beijing University of Posts and Telecommunications", "I want to go back to shenzhen!");
     diary1.popularity = 12000;
-    diary1.rating = 15000;
+    diary1.rating = 25000;
+    diaryManager.addDiary(diary1);
+
+    Diary diary2("NoFunAnyMore", "2023211", "北京邮电大学Beijing University of Posts and Telecommunications", "Here is not fun!");
     diary2.popularity = 13000;
-    diary2.rating = 14000;
+    diary2.rating = 34000;
+    diaryManager.addDiary(diary2);
+
+    Diary diary3("ShitWeather", "2022211", "北京首都机场Beijing Capital International Airport", "My plane was cancelled because of the fxxking weather!");
     diary3.popularity = 20000;
     diary3.rating = 50000;
+    diaryManager.addDiary(diary3);
+
+    Diary diary4("SoooooooTired", "2021211", "北京首都机场Beijing Capital International Airport", "I want to SLEEP!!!!!!!!!!!!!!!!!");
     diary4.popularity = 30000;
     diary4.rating = 40000;
-
-    diaryManager.addDiary(diary1);
-    diaryManager.addDiary(diary2);
-    diaryManager.addDiary(diary3);
     diaryManager.addDiary(diary4);
 
+    Diary positiveDiary("FeelingGreat", "2022211", "深圳Shenzhen", "Enjoying the sunny weather!");
+    positiveDiary.popularity = 5000;
+    positiveDiary.rating = 46000;
+    diaryManager.addDiary(positiveDiary);
+
+    Diary negativeDiary("BadDay", "2020211", "上海Shanghai", "Everything went wrong today!");
+    negativeDiary.popularity = 3000;
+    negativeDiary.rating = 12000;
+    diaryManager.addDiary(negativeDiary);
+
+    Diary neutralDiary("DailyRoutine", "2022211", "北京Beijing", "Just another ordinary day.");
+    neutralDiary.popularity = 8000;
+    neutralDiary.rating = 37000;
+    diaryManager.addDiary(neutralDiary);
+
+    Diary shortLocationDiary("WeekendGetaway", "2023211", "江苏Jiangsu", "Enjoying the beautiful sights of the city of love!");
+    shortLocationDiary.popularity = 7000;
+    shortLocationDiary.rating = 48000;
+    diaryManager.addDiary(shortLocationDiary);
+
+    Diary viralDiary("InternetSensation", "2019211", "Seoul", "My diary went viral overnight!");
+    viralDiary.popularity = 100000;
+    viralDiary.rating = 30000;
+    diaryManager.addDiary(viralDiary);
+
     // 排序测试
-    diaryManager.diarySearch("-1", "666", "-1", "北京邮电大", "-1", 0);  // 日记标题，日记作者ID，日记作者名，日记评测对象，日记内容，排序方式
+    // diaryManager.diarySearch("-1", "-1", "-1", "北京", "-1", 0);  // 日记标题，日记作者ID，日记作者名，日记评测对象，日记内容，排序方式
+    std::string title, ID, location, content;
+    int sortWay;
+    std::cout << "输入搜索关键词：（-1表示默认）" << std::endl;
+    std::cout << "1. 日记标题：";
+    std::cin >> title;
+    std::cout << "2. 日记作者ID：";
+    std::cin >> ID;
+    std::cout << "3. 日记评测对象：";
+    std::cin >> location;
+    std::cout << "4. 日记内容：";
+    std::cin >> content;
+    std::cout << "选择排序方式（0表示按热度排序，1表示按评分排序）：";
+    std::cin >> sortWay;
+
+    diaryManager.diarySearch(title, ID, "-1", location, content, sortWay);
 }
