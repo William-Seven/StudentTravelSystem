@@ -9,8 +9,8 @@ void RouterTest() {
 
     // 添加节点
     g.addNode(0, Node::Type::BUILDING, "入口大门", "大门");
-    g.addNode(1, Node::Type::BUILDING, "教学楼A", "教学楼");
-    g.addNode(2, Node::Type::FACILITY, "咖啡店", "餐饮");
+    g.addNode(1, Node::Type::FACILITY, "咖啡店", "餐饮");
+    g.addNode(2, Node::Type::BUILDING, "教学楼A", "教学楼");
     g.addNode(3, Node::Type::FACILITY, "超市1号", "超市");
     g.addNode(4, Node::Type::BUILDING, "图书馆", "图书馆");
     g.addNode(5, Node::Type::FACILITY, "卫生间2号", "卫生间");

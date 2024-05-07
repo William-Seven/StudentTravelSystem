@@ -33,10 +33,23 @@ void ViewManager::Recommendation() {
     int quantity;  // 0=top10,1=all;
     std::string search_string;
     // std::cin>>mode>>object>>quantity>>search_string;
-    mode = 1;
-    object = 2;
-    quantity = 0;
-    search_string = "-1";
+    std::cout << "选择景区/高校/全部展示(0/1/2): ";
+    std::cin >> object;
+    std::cout << "选择热度/评分排序(0/1): ";  // 0=popularity,1=ratings
+    std::cin >> mode;
+    std::cout << "选择展示前十/全部(0/1): ";  // 0=top10,1=all;
+    std::cin >> quantity;
+    std::cout << "是否进行关键词搜索？(Y/N): ";
+    std::string s;
+    std::cin >> s;
+    if (s == "Y" || s == "y")
+        search_string = "山";
+    else
+        search_string = "-1";
+    // mode = 1;
+    // object = 2;
+    // quantity = 0;
+    // search_string = "大学";
     int i, j;
     if (mode == 0) {
         if (object == 0) {
