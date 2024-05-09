@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include "include/mysql.h"
 
 #define TEST_MAXSIZE 90
 
@@ -10,12 +11,9 @@ bool kmp(std::string t, std::string s);
 
 /*获取景点数组*/
 void ViewManager::getViews() {
+    /*
     View temp;
     std::ifstream file("data1.txt");
-    // for (int i = 0; i < TEST_MAXSIZE; i++) {
-    // std::cin >> temp.LocationID >> temp.Name >> temp.Type >> temp.Popularity >> temp.Ratings;
-    // views.push_back(temp);
-    //}
     if (file.is_open()) {
         for (int i = 0; i < TEST_MAXSIZE && file >> temp.LocationID >> temp.Name >> temp.Type >> temp.Popularity >> temp.Ratings; ++i) {
             views.push_back(temp);
@@ -23,6 +21,36 @@ void ViewManager::getViews() {
         file.close();  // 关闭文件
     } else {
         std::cerr << "Unable to open file" << std::endl;
+    }
+    */
+    MYSQL my_sql;
+    MYSQL_RES* res;  // 查询结果集
+    MYSQL_ROW row;   // 记录结构体
+
+    // 初始化数据库
+    mysql_init(&my_sql);
+
+    // 连接数据库
+    if (!mysql_real_connect(&my_sql, "localhost", "root", "abc123", "test3", 3306, NULL, 0)) {
+        std::cout << "错误原因：" << mysql_error(&my_sql) << std::endl;
+        std::cout << "连接数据库失败" << std::endl;
+        exit(-1);
+    }
+
+    // 查询nodes
+    mysql_query(&my_sql, "select * from views;");
+
+    // 获取结果集
+    int count = 0;
+    res = mysql_store_result(&my_sql);
+    while (row = mysql_fetch_row(res)) {
+        View temp;
+        temp.LocationID = std::stoi(row[0]);
+        temp.Name = row[1];
+        temp.Type = row[2];
+        temp.Popularity = std::stoi(row[3]);
+        temp.Ratings = std::stod(row[4]);
+        views.push_back(temp);
     }
 }
 
@@ -64,7 +92,7 @@ void ViewManager::Recommendation() {
                     }
                     if (j >= TEST_MAXSIZE)
                         break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings / 10000 << std::endl;
+                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << std::endl;
                 }
             } else if (quantity == 1) {
                 getScore(1, 0);
@@ -77,7 +105,7 @@ void ViewManager::Recommendation() {
                     }
                     if (j >= TEST_MAXSIZE)
                         break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings / 10000 << std::endl;
+                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << std::endl;
                 }
             }
         } else if (object == 1) {
@@ -92,7 +120,7 @@ void ViewManager::Recommendation() {
                     }
                     if (j >= TEST_MAXSIZE)
                         break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings / 10000 << std::endl;
+                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << std::endl;
                 }
             } else if (quantity == 1) {
                 getScore(1, 0);
@@ -105,7 +133,7 @@ void ViewManager::Recommendation() {
                     }
                     if (j >= TEST_MAXSIZE)
                         break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings / 10000 << std::endl;
+                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << std::endl;
                 }
             }
         } else if (object == 2) {
@@ -120,7 +148,7 @@ void ViewManager::Recommendation() {
                     }
                     if (j >= TEST_MAXSIZE)
                         break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings / 10000 << std::endl;
+                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << std::endl;
                 }
             } else if (quantity == 1) {
                 getScore(1, 0);
@@ -133,7 +161,7 @@ void ViewManager::Recommendation() {
                     }
                     if (j >= TEST_MAXSIZE)
                         break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings / 10000 << std::endl;
+                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << std::endl;
                 }
             }
         }
@@ -150,7 +178,7 @@ void ViewManager::Recommendation() {
                     }
                     if (j >= TEST_MAXSIZE)
                         break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings / 10000 << std::endl;
+                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << std::endl;
                 }
             } else if (quantity == 1) {
                 getScore(0, 1);
@@ -163,7 +191,7 @@ void ViewManager::Recommendation() {
                     }
                     if (j >= TEST_MAXSIZE)
                         break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings / 10000 << std::endl;
+                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << std::endl;
                 }
             }
         } else if (object == 1) {
@@ -178,7 +206,7 @@ void ViewManager::Recommendation() {
                     }
                     if (j >= TEST_MAXSIZE)
                         break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings / 10000 << std::endl;
+                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << std::endl;
                 }
             } else if (quantity == 1) {
                 getScore(0, 1);
@@ -191,7 +219,7 @@ void ViewManager::Recommendation() {
                     }
                     if (j >= TEST_MAXSIZE)
                         break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings / 10000 << std::endl;
+                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << std::endl;
                 }
             }
         } else if (object == 2) {
@@ -206,7 +234,7 @@ void ViewManager::Recommendation() {
                     }
                     if (j >= TEST_MAXSIZE)
                         break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings / 10000 << std::endl;
+                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << std::endl;
                 }
             } else if (quantity == 1) {
                 getScore(0, 1);
@@ -219,7 +247,7 @@ void ViewManager::Recommendation() {
                     }
                     if (j >= TEST_MAXSIZE)
                         break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings / 10000 << std::endl;
+                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << std::endl;
                 }
             }
         }
@@ -235,7 +263,7 @@ void ViewManager::getScore(int a, int b) {
             popularity = 50000;
         else
             popularity = views[i].Popularity;
-        ratings = views[i].Ratings;
+        ratings = views[i].Ratings * 100;
         views[i].Score = a * popularity + b * ratings;  // 计算公式
     }
 }
