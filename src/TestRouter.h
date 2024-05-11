@@ -114,44 +114,100 @@ void RouterTest() {
         g.addEdge(start, end, distance, congestion, speed);
     }
 
-    // 用户输入
-    std::cout << "请输入起点和终点：" << std::endl;
-    int from, to;
-    std::cin >> from >> to;
+    // 选择路线规划/多个途径点规划
+    std::cout << "请输入路线规划方式（1-选择路线规划，2-多个途径点规划）：";
+    int mode;
+    std::cin >> mode;
+    if (mode == 1) {
+        // 选择路线规划
+        // 用户输入
+        std::cout << "请输入起点和终点：" << std::endl;
+        int from, to;
+        std::cin >> from >> to;
 
-    Node* n1 = g.getNode(from);
-    Node* n2 = g.getNode(to);
-    std::cout << "起点：" << n1->getName() << "\n终点：" << n2->getName() << std::endl;
+        Node* n1 = g.getNode(from);
+        Node* n2 = g.getNode(to);
+        std::cout << "起点：" << n1->getName() << "\n终点：" << n2->getName() << std::endl;
 
-    // 使用算法寻找最短路径
-    Algorithms::PathResult shortestPathResult = Algorithms::findShortestPath(g, from, to);
+        // 使用算法寻找最短路径
+        Algorithms::PathResult shortestPathResult = Algorithms::findShortestPath(g, from, to);
 
-    // 打印结果
-    std::cout << "Shortest path length: " << shortestPathResult.length << " meters" << std::endl;
-    int flag = 0;
-    for (int nodeID : shortestPathResult.path) {
-        if (flag == 0) {
-            std::cout << nodeID;
-            flag = 1;
-        } else {
-            std::cout << " --> " << nodeID;
+        // 打印结果
+        std::cout << "Shortest path length: " << shortestPathResult.length << " meters" << std::endl;
+        int flag = 0;
+        for (int nodeID : shortestPathResult.path) {
+            if (flag == 0) {
+                std::cout << nodeID;
+                flag = 1;
+            } else {
+                std::cout << " --> " << nodeID;
+            }
         }
-    }
-    std::cout << std::endl;
+        std::cout << std::endl;
 
-    // 使用算法寻找最快路径
-    Algorithms::PathResult fastestPathResult = Algorithms::findFastestPath(g, from, to);
+        // 使用算法寻找最快路径
+        Algorithms::PathResult fastestPathResult = Algorithms::findFastestPath(g, from, to);
 
-    // 输出结果
-    std::cout << "Fastest path time: " << std::fixed << std::setprecision(1) << fastestPathResult.time << " minutes" << std::endl;
-    flag = 0;
-    for (int nodeID : fastestPathResult.path) {
-        if (flag == 0) {
-            std::cout << nodeID;
-            flag = 1;
-        } else {
-            std::cout << " --> " << nodeID;
+        // 输出结果
+        std::cout << "Fastest path time: " << std::fixed << std::setprecision(1) << fastestPathResult.time << " minutes" << std::endl;
+        flag = 0;
+        for (int nodeID : fastestPathResult.path) {
+            if (flag == 0) {
+                std::cout << nodeID;
+                flag = 1;
+            } else {
+                std::cout << " --> " << nodeID;
+            }
         }
+        std::cout << std::endl;
+    } else {
+        std::vector<int> targets;
+
+        std::cout << "请输入当前位置id：";
+        int start;
+        std::cin >> start;
+        // targets.push_back(start);
+
+        std::cout << "请输入途径点(输入-1结束):" << std::endl;
+        int target;
+        while (std::cin >> target && target != -1) {
+            targets.push_back(target);
+        }
+
+        // 使用暴力算法
+        Algorithms::PathResult fspPathResult = Algorithms::findBruteForcePath(g, start, targets);
+
+        // 输出结果
+        std::cout << "Shortest path length: " << fspPathResult.length << " meters" << std::endl;
+        int flag = 0;
+        for (int nodeID : fspPathResult.path) {
+            if (flag == 0) {
+                std::cout << nodeID;
+                flag = 1;
+            } else {
+                std::cout << " --> " << nodeID;
+            }
+        }
+        std::cout << std::endl;
+        /*
+                // 生成距离矩阵
+                auto dist = g.generateDistanceMatrix();
+
+                // 使用算法寻找最短路径
+                Algorithms::PathResult TspPathResult = Algorithms::findTspPath(dist, start, targets);
+
+                // 打印结果
+                std::cout << "Shortest path length: " << TspPathResult.length << " meters" << std::endl;
+                int flag = 0;
+                for (int nodeID : TspPathResult.path) {
+                    if (flag == 0) {
+                        std::cout << nodeID;
+                        flag = 1;
+                    } else {
+                        std::cout << " --> " << nodeID;
+                    }
+                }
+                std::cout << std::endl;
+            */
     }
-    std::cout << std::endl;
 }

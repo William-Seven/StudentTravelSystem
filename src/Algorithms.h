@@ -24,6 +24,12 @@ class Algorithms {
 
     // Dijkstra算法，计算最快路径
     static PathResult findFastestPath(Graph& graph, int startNodeID, int endNodeID);
+
+    // TSP动态规划算法，计算途径点最短路径
+    static PathResult findTspPath(std::vector<std::vector<double>>& dist, int startNodeID, std::vector<int>& targets);
+
+    // 暴力
+    static PathResult findBruteForcePath(Graph& graph, int startNodeID, std::vector<int>& targets);
 };
 
 #endif  // ALGORITHMS_H

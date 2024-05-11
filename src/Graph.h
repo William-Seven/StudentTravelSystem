@@ -3,6 +3,7 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
+#include <limits>
 #include <vector>
 #include "Edge.h"
 #include "MyHashMap.h"
@@ -25,6 +26,9 @@ class Graph {
 
     // 获取节点
     Node* getNode(int id);
+
+    // 生成图的距离矩阵，用于存储节点之间的距离
+    std::vector<std::vector<double>> generateDistanceMatrix();
 };
 
 #endif  // GRAPH_H

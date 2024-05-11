@@ -1,5 +1,7 @@
 #include "Graph.h"
 
+#define DNF std::numeric_limits<double>::max()  // 定义一个无限大的值用于表示无法到达
+
 // 构造函数
 Graph::Graph(int size)
     : size(size), nodes(size) {}
@@ -66,4 +68,23 @@ void Graph::addEdge(const int& from, const int& to, double distance, double cong
 // 获取节点
 Node* Graph::getNode(int id) {
     return *(nodes.find(id));
+}
+
+// 生成图的距离矩阵，用于存储节点之间的距离
+std::vector<std::vector<double>> Graph::generateDistanceMatrix() {
+    int n = size;
+
+    // 初始化矩阵，默认填充INF表示无穷大
+    std::vector<std::vector<double>> dist(n, std::vector<double>(n, DNF));
+
+    for (int i = 0; i < size; i++) {
+        // 遍历当前节点所有的边
+        for (auto& edge : Graph::getNode(i)->edges) {
+            dist[i][edge->destination->id] = edge->distance;
+            dist[edge->destination->id][i] = edge->distance;  // 无向图，对称矩阵
+            // std::cout << dist[i][edge->destination->id] << std::endl;
+        }
+        dist[i][i] = 0;  // 节点到自身的距离为0
+    }
+    return dist;
 }
