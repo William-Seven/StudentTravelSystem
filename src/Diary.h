@@ -16,10 +16,12 @@ class Diary {
     int rating;
     int score;
 
-    Diary(std::string title,std::string authorID,std::string destination,std::string content);
+    Diary(std::string title, std::string authorID, std::string destination, std::string content);
 
     void DiaryPrint();
-    bool kmp(std::string t,std::string s);
+    void DiaryWriteintoFile();
+
+    //bool kmp(std::string t, std::string s);
 };
 
 #endif

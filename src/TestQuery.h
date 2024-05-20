@@ -109,8 +109,9 @@ void QueryTest() {
         double distance = std::stod(row[2]);
         double congestion = std::stod(row[3]);
         double speed = std::stod(row[4]);
+        Edge::type type = static_cast<Edge::type>(std::stoi(row[5]));
         // std::cout << start << " " << end << " " << distance << " " << congestion << " " << speed << std::endl;
-        g.addEdge(start, end, distance, congestion, speed);
+        g.addEdge(start, end, distance, congestion, speed, type);
     }
 
     // 创建LocationQuery对象，关联到已有的图

@@ -6,23 +6,25 @@
 
 #include <string>
 #include "Node.h"
-// 定义不同的交通方式
-enum class TransportMode {
-    WALK,
-    BIKE,
-    EBIKE
-};
+
 class Edge {
    public:
-    Node* source;                 // 边的起点节点
-    Node* destination;            // 边的终点节点
-    double distance;              // 边的长度
-    double congestion;            // 边的拥挤度
-    TransportMode transportMode;  // 边的交通工具类型
-    double speed;                 // 边的交通工具速度
+    // 交通工具类型
+    enum type {
+        WALK = 1,
+        BIKE = 2,
+        EBIKE = 3
+    };
+
+    Node* source;        // 边的起点节点
+    Node* destination;   // 边的终点节点
+    double distance;     // 边的长度
+    double congestion;   // 边的拥挤度
+    type transportMode;  // 边的交通工具类型
+    double speed;        // 边的交通工具速度
 
     // 构造函数
-    Edge(Node* source, Node* destination, double distance, double congestion, TransportMode transportMode, double speed);
+    Edge(Node* source, Node* destination, double distance, double congestion, type transportMode, double speed);
 
     // 获取边的起点节点
     Node* getFrom() const;
@@ -41,6 +43,9 @@ class Edge {
 
     // 获取边的交通工具速度
     double getSpeed() const;
+
+    // 获取交通工具类型
+    type gettype() const;
 };
 
 #endif  // EDGE_H

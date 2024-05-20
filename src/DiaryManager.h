@@ -12,10 +12,11 @@ class DiaryManager {
     void printAllDiaries();
     void addDiary(Diary diary);
     void deleteDiary(int index);
-    int getIndex(int mode,std::string t);
-    void getScore(int a,int b);
-    void q_sort(int left,int right);
-    void diarySearch(std::string search_title,std::string search_authorID,std::string search_author,std::string search_destination,std::string search_content,int search_mode);
+    int getIndex(int mode, std::string t);
+    void getScore(int a, int b);
+    void q_sort(int left, int right);
+    void diarySearch(std::string search_title, std::string search_authorID, std::string search_author, std::string search_destination, std::string search_content, int search_mode);
+    void diaryDownload();
 };
 
 #endif

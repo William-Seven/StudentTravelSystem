@@ -110,8 +110,9 @@ void RouterTest() {
         double distance = std::stod(row[2]);
         double congestion = std::stod(row[3]);
         double speed = std::stod(row[4]);
+        Edge::type type = static_cast<Edge::type>(std::stoi(row[5]));
         // std::cout << start << " " << end << " " << distance << " " << congestion << " " << speed << std::endl;
-        g.addEdge(start, end, distance, congestion, speed);
+        g.addEdge(start, end, distance, congestion, speed, type);
     }
 
     // 选择路线规划/多个途径点规划
@@ -145,8 +146,19 @@ void RouterTest() {
         }
         std::cout << std::endl;
 
+        // 选择交通方式
+        std::cout << "请选择最快路径的交通方式(1-WALK, 2-BIKE): ";
+        int transport;
+        std::cin >> transport;
+
+        if (transport == 1) {
+            std::cout << "WALK" << std::endl;
+        } else if (transport == 2) {
+            std::cout << "BIKE" << std::endl;
+        }
+
         // 使用算法寻找最快路径
-        Algorithms::PathResult fastestPathResult = Algorithms::findFastestPath(g, from, to);
+        Algorithms::PathResult fastestPathResult = Algorithms::findFastestPath(g, from, to, transport);
 
         // 输出结果
         std::cout << "Fastest path time: " << std::fixed << std::setprecision(1) << fastestPathResult.time << " minutes" << std::endl;
@@ -160,6 +172,7 @@ void RouterTest() {
             }
         }
         std::cout << std::endl;
+
     } else {
         std::vector<int> targets;
 

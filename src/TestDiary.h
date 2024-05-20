@@ -99,4 +99,14 @@ void DiaryTest() {
     std::cin >> sortWay;
 
     diaryManager.diarySearch(title, ID, "-1", location, content, sortWay);
+
+    std::cout << "是否需要下载？(y/n)" << std::endl;
+    std::string download;
+    std::cin >> download;
+    if (download == "y") {
+        diaryManager.diaryDownload();
+    }
+
+    // 关闭数据库
+    mysql_close(&my_sql);
 }

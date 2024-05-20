@@ -1,13 +1,14 @@
 #include "ViewManager.h"
+#include <mysql.h>
 #include <fstream>
 #include <iostream>
 #include <vector>
-#include "include/mysql.h"
+#include "Kmp.h"
 
 #define TEST_MAXSIZE 90
 
-void get_nextval(std::string t, int nextval[]);
-bool kmp(std::string t, std::string s);
+// void get_nextval(std::string t, int nextval[]);
+// bool kmp(std::string t, std::string s);
 
 /*获取景点数组*/
 void ViewManager::getViews() {
@@ -70,9 +71,11 @@ void ViewManager::Recommendation() {
     std::cout << "是否进行关键词搜索？(Y/N): ";
     std::string s;
     std::cin >> s;
-    if (s == "Y" || s == "y")
+    // 由于编码的问题，目前没办法从终端输入中文
+    if (s == "Y" || s == "y") {
+        // std::cin>>search_string;
         search_string = "山";
-    else
+    } else
         search_string = "-1";
     // mode = 1;
     // object = 2;
@@ -291,6 +294,7 @@ void ViewManager::q_sort(int left, int right) {
 }
 
 /*获取nextval[t.length()]数组*/
+/*
 void get_nextval(std::string t, int nextval[]) {
     int j = 0, k = -1;
     int t_len = t.length();
@@ -306,8 +310,9 @@ void get_nextval(std::string t, int nextval[]) {
         } else
             k = nextval[k];
 }
-
+*/
 /*在字符串s中查找字符串t第一次出现的下标*/
+/*
 bool kmp(std::string t, std::string s) {
     if (t == "-1")
         return 1;
@@ -326,4 +331,4 @@ bool kmp(std::string t, std::string s) {
         return true;
     else
         return false;
-}
+}*/

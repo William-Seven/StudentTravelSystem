@@ -2,7 +2,7 @@
 
 #include "Edge.h"
 
-Edge::Edge(Node* source, Node* destination, double distance, double congestion, TransportMode transportMode, double speed)
+Edge::Edge(Node* source, Node* destination, double distance, double congestion, type transportMode, double speed)
     : source(source), destination(destination), distance(distance), congestion(congestion), transportMode(transportMode), speed(speed) {}
 
 Node* Edge::getFrom() const {
@@ -27,4 +27,8 @@ double Edge::getCongestion() const {
 
 double Edge::getSpeed() const {
     return speed;
+}
+
+Edge::type Edge::gettype() const {
+    return transportMode;
 }

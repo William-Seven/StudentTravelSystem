@@ -73,7 +73,7 @@ Algorithms::PathResult Algorithms::findShortestPath(Graph& graph, int startNodeI
 }
 
 // 寻找最快路径算法
-Algorithms::PathResult Algorithms::findFastestPath(Graph& graph, int startNodeID, int endNodeID) {
+Algorithms::PathResult Algorithms::findFastestPath(Graph& graph, int startNodeID, int endNodeID, int mode) {
     int numNodes = graph.size;  // 图中节点总数
     // 初始化时间、前驱节点和访问标记的哈希表
     HashMap<int, double, HashFunc> times(numNodes);
@@ -99,12 +99,18 @@ Algorithms::PathResult Algorithms::findFastestPath(Graph& graph, int startNodeID
         visited[u] = true;  // 标记该节点为已访问
 
         // 遍历所有出边，更新时间和前驱节点
+        int transportmode = static_cast<Edge::type>(mode);
         for (const auto& edge : graph.getNode(u)->edges) {
-            int v = edge->getTo()->id;
-            double alt = times[u] + edge->getLength() / (edge->getSpeed() * (1 - edge->getCongestion()));
-            if (alt < times[v]) {
-                times[v] = alt;
-                predecessors[v] = u;
+            if (edge->transportMode == transportmode) {
+                int v = edge->getTo()->id;
+                double alt = times[u] + edge->getLength() / (edge->getSpeed() * (1 - edge->getCongestion()));
+                if (alt < times[v]) {
+                    times[v] = alt;
+                    predecessors[v] = u;
+                }
+            } else {
+                // 如果不是当前交通方式的边，则跳过
+                continue;
             }
         }
     }
@@ -127,6 +133,7 @@ Algorithms::PathResult Algorithms::findFastestPath(Graph& graph, int startNodeID
 }
 
 // TSP途径点最短路径
+/*
 Algorithms::PathResult Algorithms::findTspPath(std::vector<std::vector<double>>& dist, int startNodeID, std::vector<int>& targets) {
     int n = dist.size();          // 所有节点总数
     int t_size = targets.size();  // 途径点数量
@@ -190,7 +197,7 @@ Algorithms::PathResult Algorithms::findTspPath(std::vector<std::vector<double>>&
 
     return result;
 }
-
+*/
 void permutations(Algorithms::PathResult& result, Graph& graph, int startNodeID, std::vector<int> arr, int l, int r) {
     if (l == r) {
         // 基础条件：如果左右指针相遇

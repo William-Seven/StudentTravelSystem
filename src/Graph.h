@@ -22,7 +22,7 @@ class Graph {
 
     // 添加边
     // void addEdge(const int& from, const int& to, double distance);
-    void addEdge(const int& from, const int& to, double distance, double congestion, double speed, TransportMode transportMode = TransportMode::WALK);
+    void addEdge(const int& from, const int& to, double distance, double congestion, double speed, Edge::type transportMode);
 
     // 获取节点
     Node* getNode(int id);

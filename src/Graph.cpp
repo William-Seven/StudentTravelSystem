@@ -48,7 +48,7 @@ void Graph::addEdge(const int& from, const int& to, double distance) {
     }
 }
 */
-void Graph::addEdge(const int& from, const int& to, double distance, double congestion, double speed, TransportMode transportMode) {
+void Graph::addEdge(const int& from, const int& to, double distance, double congestion, double speed, Edge::type transportMode) {
     Node* sourceNode = getNode(from);     // 获取源节点
     Node* destinationNode = getNode(to);  // 获取目标节点
 
