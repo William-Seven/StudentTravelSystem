@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
 export default {
@@ -61,13 +61,28 @@ export default {
     const error = ref('');
     const routeInfo = ref('');
 
-const toggleRouteType = () => {
+// 新增重置字段的函数
+    const resetFields = () => {
+      startPoint.value = '';
+      endPoint.value = '';
+      currentLocation.value = '';
+      viaPoints.value = ['']; // 重置途径点列表
+      transport.value = 'walk'; // 重置交通工具
+      error.value = ''; // 清除错误信息
+      routeInfo.value = ''; // 清除路线信息
+    };
+
+    onMounted(resetFields); // 组件挂载时重置字段
+
+    const toggleRouteType = () => {
+  resetFields(); // 添加重置字段操作
       routeType.value = routeType.value === 'pointToPoint' ? 'multipleWaypoints' : 'pointToPoint';
     };
 
     const selectArea = (area) => {
+      resetFields(); // 添加重置字段操作
       currentArea.value = area;
-      routeType.value = 'pointToPoint'; // 默认选择点对点路线规划
+      //routeType.value = 'pointToPoint'; // 默认选择点对点路线规划
     };
 
     const addViaPoint = () => {
@@ -85,6 +100,7 @@ const toggleRouteType = () => {
           viaPoints: viaPoints.value,
           transport: transport.value,
         });
+        
         if (response.data.success) {
           routeInfo.value = response.data.info;
         } else {
@@ -109,6 +125,7 @@ const toggleRouteType = () => {
       addViaPoint,
         searchRoute,
       toggleRouteType,
+      resetFields,
     };
   },
 };

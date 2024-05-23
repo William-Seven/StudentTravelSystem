@@ -150,11 +150,14 @@ int main(int argc, char* argv[]) {
 
         // 选择最快路径的交通方式(1-walk, 2-ebike, 3-bike)
         int transport;
-        if (argv[2] == "walk") {
+
+        std::string temps = argv[2];
+
+        if (temps == "walk") {
             transport = 1;
-        } else if (argv[2] == "ebike") {
+        } else if (temps == "ebike") {
             transport = 2;
-        } else if (argv[2] == "bike") {
+        } else if (temps == "bike") {
             transport = 3;
         } else {
             transport = 1;
