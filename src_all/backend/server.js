@@ -102,7 +102,47 @@ app.post('/api/change-password', (req, res) => {
 });
 
 // 游学推荐api
+app.post('/api/recommendation', (req, res) => {
+    let { filterType, limit, sort, searchKeyword } = req.body;
 
+    let filterArg = filterType === 'all' ? 2 : filterType === 'scenic' ? 0 : 1;
+    let limitArg = limit === 'all' ? 1 : 0;
+    let sortArg = sort === 'default' ? 2 : sort === 'popularity' ? 0 : 1;
+    let searchArg = searchKeyword || '-1'; // 假设C++程序使用-1表示默认关键字
+
+    const args = [filterArg, limitArg, sortArg, searchArg];
+
+    const recommendationProcess = spawn('./recommendation', args);
+
+    let output = '';
+    recommendationProcess.stdout.on('data', (data) => {
+        output += data.toString();
+    });
+
+    recommendationProcess.on('close', (code) => {
+        if (code === 0) {
+            // 假设C++程序返回0表示成功
+            res.status(200).json({
+                success: true,
+                list: output
+            });
+        } else {
+            // 如果C++程序返回非0值，表示有错误发生
+            res.status(500).json({
+                success: false,
+                error: 'Failed to get recommendations'
+            });
+        }
+    });
+
+    recommendationProcess.on('error', (err) => {
+        console.error('Spawn error:', err);
+        res.status(500).json({
+            success: false,
+            error: 'Server internal error'
+        });
+    });
+});
 
 //路线规划api
 app.post('/api/route-plan', (req, res) => {
@@ -147,6 +187,10 @@ app.post('/api/route-plan', (req, res) => {
         });
     });
 });
+
+// 场所查询api
+
+// 游学日记api
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);

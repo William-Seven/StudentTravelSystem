@@ -7,6 +7,8 @@ import ForgotPassword from '../components/myForgotPassword.vue';
 import ChangePassword from '../components/myChangePassword.vue';
 import Dashboard from '../components/myDashboard.vue';
 import RoutePlanner from '../components/RoutePlanner.vue';
+import StudyTourRecommendations from '../components/StudyTourRecommendations.vue';
+import Description from '../components/myDescription.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -16,6 +18,8 @@ const routes = [
     { path: '/change-password', component: ChangePassword },
     { path: '/dashboard', component: Dashboard },
     { path: '/route-planning', component: RoutePlanner },
+    { path: '/study-tour-recommendations', component: StudyTourRecommendations },
+    { path: '/description', component: Description },
 ];
 
 const router = createRouter({
