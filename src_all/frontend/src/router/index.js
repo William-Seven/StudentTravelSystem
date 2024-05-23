@@ -6,6 +6,7 @@ import Register from '../components/myRegister.vue';
 import ForgotPassword from '../components/myForgotPassword.vue';
 import ChangePassword from '../components/myChangePassword.vue';
 import Dashboard from '../components/myDashboard.vue';
+import RoutePlanner from '../components/RoutePlanner.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -14,6 +15,7 @@ const routes = [
     { path: '/forgot-password', component: ForgotPassword },
     { path: '/change-password', component: ChangePassword },
     { path: '/dashboard', component: Dashboard },
+    { path: '/route-planning', component: RoutePlanner },
 ];
 
 const router = createRouter({
