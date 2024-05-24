@@ -261,7 +261,72 @@ app.post('/api/diary-search', (req, res) => {
 });
 
 // 游学日记下载api
+app.post('/api/diary-download', (req, res) => {
+    const diarydownloadProcess = spawn('./diaryDownload');
 
+    let output = '';
+    diarydownloadProcess.stdout.on('data', (data) => {
+        output += data.toString();
+    });
+
+    diarydownloadProcess.on('close', (code) => {
+        if (code === 0) {
+            // 假设C++程序返回0表示成功 
+            res.status(200).json({
+                success: true,
+                //info: output
+            });
+        } else {
+            // 如果C++程序返回非0值，表示有错误发生
+            res.status(500).json({
+                success: false,
+            });
+        }
+    });
+
+    diarydownloadProcess.on('error', (err) => {
+        console.error('Spawn error:', err);
+        res.status(500).json({
+            success: false,
+            error: 'Server internal error'
+        });
+    });
+});
+
+//游学日记解压api
+app.post('/api/diary-uncompress', (req, res) => {
+    let { path } = req.body;
+
+    const diaryUncompressProcess = spawn('./diaryUncompress', [path]);
+
+    let output = '';
+    diaryUncompressProcess.stdout.on('data', (data) => {
+        output += data.toString();
+    });
+
+    diaryUncompressProcess.on('close', (code) => {
+        if (code === 0) {
+            // 假设C++程序返回0表示成功
+            res.status(200).json({
+                success: true,
+                //info: output
+            });
+        } else {
+            // 如果C++程序返回非0值，表示有错误发生
+            res.status(500).json({
+                success: false,
+            });
+        }
+    });
+
+    diaryUncompressProcess.on('error', (err) => {
+        console.error('Spawn error:', err);
+        res.status(500).json({
+            success: false,
+            error: 'Server internal error'
+        });
+    });
+});
 
 // 游学日记写入api
 

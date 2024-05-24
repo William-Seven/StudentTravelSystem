@@ -20,6 +20,8 @@
         </div>
         <!-- 搜索按钮 -->
         <button @click="searchDiaries">搜索</button>
+        <!-- 下载按钮，仅在有日记时显示 -->
+        <button v-if="diaries.length" @click="downloadDiaries">下载日记</button>
         <!-- 游学日记列表 -->
         <ul v-if="diaries.length" class="diary-list">
             <li v-for="diary in diaries" :key="diary.title" class="diary-item">
@@ -57,6 +59,13 @@ export default {
         // 搜索日记
         const fetchDiaries = async () => {
             try {
+                // 在发送请求之前打印搜索关键字
+                console.log('搜索标题:', searchTitle.value);
+                console.log('搜索作者:', searchAuthor.value);
+                console.log('搜索描述对象:', searchDescription.value);
+                console.log('搜索内容:', searchContent.value);
+                console.log('排序方式:', sort.value);
+
                 const response = await axios.post('/api/diary-search', {
                     title: searchTitle.value || '-1',
                     author: searchAuthor.value || '-1',
@@ -123,6 +132,57 @@ export default {
             router.push('/dashboard');
         };
 
+        // 下载日记
+        const downloadDiaries = async () => {
+            try {
+                const response = await axios.post('/api/diary-download');
+                if (response.data.success) {
+                    // 下载成功，显示提示信息
+                    showDownloadSuccess();
+                } else {
+                    // 下载失败，显示错误信息
+                    console.error('下载失败:', response.data.message);
+                }
+            } catch (err) {
+                console.error('下载时发生错误:', err);
+            }
+        };
+
+        // 显示下载成功的提示信息，并提供解压选项
+        const showDownloadSuccess = () => {
+            // 这里可以使用模态框或者弹窗来显示提示信息
+            // 以下代码仅为示例，具体实现可能需要使用模态框组件
+            alert('压缩下载成功，是否解压？');
+            const userChoice = confirm('压缩下载成功，请输入压缩文件的路径，如D:\\\\Diarytemp.zlx');
+            if (userChoice) {
+                // 用户选择“是”，提示输入解压路径
+                const path = prompt('请输入压缩文件的路径，如D:\\\\Diarytemp.zlx');
+                if (path) {
+                    // 用户输入了解压路径，调用后端解压接口
+                    uncompressDiaries(path);
+                }
+            }
+        };
+
+        // 解压日记
+        const uncompressDiaries = async (path) => {
+            try {
+                const response = await axios.post('/api/diary-uncompress', {
+                    path: path,
+                });
+                if (response.data.success) {
+                    // 解压成功
+                    alert('解压成功');
+                    console.log('解压成功');
+                } else {
+                    // 解压失败，显示错误信息
+                    console.error('解压失败:', response.data.message);
+                }
+            } catch (err) {
+                console.error('解压时发生错误:', err);
+            }
+        };
+
         return {
             searchTitle,
             searchAuthor,
@@ -134,6 +194,7 @@ export default {
             goToDiaryDetail,
             goToWriteDiary,
             goToDashboard,
+            downloadDiaries,
         };
     },
 };

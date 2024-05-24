@@ -95,17 +95,17 @@ void DiaryManager::diaryDownload() {
     std::string file = "D:\\Diarytemp.txt";
     FileCompress cps;
     cps.Compress(file.c_str());
-    std::cout << "压缩成功！" << std::endl;
-    std::cout << "是否需要解压？(y/n)" << std::endl;
-    char c;
-    std::cin >> c;
+    // std::cout << "压缩成功！" << std::endl;
+    /*
     if (c == 'y') {
-        std::cout << "请输入下载的Diarytemp.zlx文件路径: (例：D:\\Diarytemp.zlx)" << std::endl;
+        //std::cout << "请输入下载的Diarytemp.zlx文件路径: (例：D:\\Diarytemp.zlx)" << std::endl;
         std::cin >> file;
         FileCompress cps;
         cps.UnCompress(file.c_str());
-        std::cout << "解压成功！" << std::endl;
-    } else if (c == 'n') {
-        std::cout << "已取消解压！" << std::endl;
-    }
+    */
+}
+
+void DiaryManager::diaryUncompress(std::string path) {
+    FileCompress cps;
+    cps.UnCompress(path.c_str());
 }

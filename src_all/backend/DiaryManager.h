@@ -15,6 +15,7 @@ class DiaryManager {
     void q_sort(int left, int right);
     void diarySearch(std::string search_title, std::string search_author, std::string search_destination, std::string search_content, int search_mode);
     void diaryDownload();
+    void diaryUncompress(std::string path);
 };
 
 #endif

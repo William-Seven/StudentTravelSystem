@@ -42,8 +42,10 @@ void DiaryTest(int mode, std::string title, std::string author, std::string dest
 
         // 关闭数据库
         mysql_close(&my_sql);
-    } else {
+    } else if (mode == 1) {
         // 下载
         diaryManager.diaryDownload();
+    } else {
+        diaryManager.diaryUncompress(title);
     }
 }

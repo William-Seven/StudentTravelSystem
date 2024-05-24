@@ -11,6 +11,7 @@ import StudyTourRecommendations from '../components/StudyTourRecommendations.vue
 import Description from '../components/myDescription.vue';
 import PlaceQuery from '../components/PlaceQuery.vue';
 import StudyTourDiary from '../components/StudyTourDiary.vue';
+import DiaryDetail from '../components/DiaryDetail.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -24,6 +25,7 @@ const routes = [
     { path: '/description', component: Description },
     { path: '/place-query', component: PlaceQuery },
     { path: '/study-tour-diary', component: StudyTourDiary },
+    { path: '/diary-detail', component: DiaryDetail },
 ];
 
 const router = createRouter({
