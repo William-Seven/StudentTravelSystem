@@ -9,6 +9,7 @@ import Dashboard from '../components/myDashboard.vue';
 import RoutePlanner from '../components/RoutePlanner.vue';
 import StudyTourRecommendations from '../components/StudyTourRecommendations.vue';
 import Description from '../components/myDescription.vue';
+import PlaceQuery from '../components/PlaceQuery.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -20,6 +21,7 @@ const routes = [
     { path: '/route-planning', component: RoutePlanner },
     { path: '/study-tour-recommendations', component: StudyTourRecommendations },
     { path: '/description', component: Description },
+    { path: '/place-query', component: PlaceQuery },
 ];
 
 const router = createRouter({

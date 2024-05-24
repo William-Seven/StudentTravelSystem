@@ -189,6 +189,40 @@ app.post('/api/route-plan', (req, res) => {
 });
 
 // 场所查询api
+app.post('/api/place-query', (req, res) => {
+    let { currentLocation, searchRange, placeType } = req.body;
+
+    const placeQueryProcess = spawn('./placeQuery', [currentLocation, searchRange, placeType]);
+
+    let output = '';
+    placeQueryProcess.stdout.on('data', (data) => {
+        output += data.toString();
+    });
+
+    placeQueryProcess.on('close', (code) => {
+        if (code === 0) {
+            // 假设C++程序返回0表示成功
+            res.status(200).json({
+                success: true,
+                list: output
+            });
+        } else {
+            // 如果C++程序返回非0值，表示有错误发生
+            res.status(500).json({
+                success: false,
+                error: 'Failed to get places'
+            });
+        }
+    });
+
+    placeQueryProcess.on('error', (err) => {
+        console.error('Spawn error:', err);
+        res.status(500).json({
+            success: false,
+            error: 'Server internal error'
+        });
+    });
+});
 
 // 游学日记api
 

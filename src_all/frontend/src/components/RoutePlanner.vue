@@ -2,7 +2,7 @@
 <template>
   <div class="route-planner">
     <h1>路线规划</h1>
-<button @click="goToDashboard">返回首页</button>
+    <button @click="goToDashboard">返回首页</button>
     <!-- 选择景区或校园 -->
     <div>
       <button @click="selectArea('scenic')">景区</button>
@@ -53,7 +53,7 @@ import { useRouter } from 'vue-router';
 export default {
   name: 'RoutePlanner',
   setup() {
-    const currentArea = ref(null);
+    const currentArea = ref('scenic');
     const routeType = ref('pointToPoint'); // 默认为点对点路线规划
     const startPoint = ref('');
     const endPoint = ref('');
@@ -62,9 +62,12 @@ export default {
     const transport = ref('walk');
     const error = ref('');
     const routeInfo = ref('');
-const router = useRouter();
+    const router = useRouter();
 
-// 新增重置字段的函数
+    // 从路由获取查询参数
+    const { query } = router.currentRoute.value;
+
+    // 新增重置字段的函数
     const resetFields = () => {
       startPoint.value = '';
       endPoint.value = '';
@@ -75,10 +78,21 @@ const router = useRouter();
       routeInfo.value = ''; // 清除路线信息
     };
 
-    onMounted(resetFields); // 组件挂载时重置字段
+    //onMounted(resetFields); // 组件挂载时重置字段
+
+    onMounted(() => {
+      // 组件挂载时重置字段
+      resetFields();
+
+      // 设置起点和终点
+      if (query.startPoint && query.endPoint) {
+        startPoint.value = query.startPoint;
+        endPoint.value = query.endPoint;
+      }
+    });
 
     const toggleRouteType = () => {
-  resetFields(); // 添加重置字段操作
+      resetFields(); // 添加重置字段操作
       routeType.value = routeType.value === 'pointToPoint' ? 'multipleWaypoints' : 'pointToPoint';
     };
 
@@ -103,7 +117,7 @@ const router = useRouter();
           viaPoints: viaPoints.value,
           transport: transport.value,
         });
-        
+
         if (response.data.success) {
           routeInfo.value = response.data.info;
         } else {
@@ -114,10 +128,10 @@ const router = useRouter();
       }
     };
 
-// 定义跳转到首页的函数
-      const goToDashboard = () => {
-        router.push('/dashboard');
-      };
+    // 定义跳转到首页的函数
+    const goToDashboard = () => {
+      router.push('/dashboard');
+    };
 
     return {
       currentArea,
@@ -131,7 +145,7 @@ const router = useRouter();
       routeInfo,
       selectArea,
       addViaPoint,
-        searchRoute,
+      searchRoute,
       toggleRouteType,
       resetFields,
       goToDashboard,
