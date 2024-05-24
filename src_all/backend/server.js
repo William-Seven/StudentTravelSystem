@@ -224,7 +224,47 @@ app.post('/api/place-query', (req, res) => {
     });
 });
 
-// 游学日记api
+// 游学日记搜索api
+app.post('/api/diary-search', (req, res) => {
+    let { title, author, description, content, sort } = req.body;
+
+    const diarySearchProcess = spawn('./diarySearch', [title, author, description, content, sort]);
+
+    let output = '';
+    diarySearchProcess.stdout.on('data', (data) => {
+        output += data.toString();
+    });
+
+    diarySearchProcess.on('close', (code) => {
+        if (code === 0) {
+            // 假设C++程序返回0表示成功
+            res.status(200).json({
+                success: true,
+                list: output
+            });
+        } else {
+            // 如果C++程序返回非0值，表示有错误发生
+            res.status(500).json({
+                success: false,
+                error: 'Failed to search diaries'
+            });
+        }
+    });
+
+    diarySearchProcess.on('error', (err) => {
+        console.error('Spawn error:', err);
+        res.status(500).json({
+            success: false,
+            error: 'Server internal error'
+        });
+    });
+});
+
+// 游学日记下载api
+
+
+// 游学日记写入api
+
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);

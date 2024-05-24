@@ -46,7 +46,7 @@
                 <button @click="goToRoutePlanner(result.id)">路线</button>
             </li>
         </ul>
-        <p v-else-if="searchResults && !searchResults.length">没有找到相关场所。</p>
+        <p v-else-if="searchResults && !searchResults.length">没有找到相关场所</p>
     </div>
 </template>
 
@@ -60,7 +60,7 @@ export default {
     setup() {
         const currentLocation = ref(''); // 当前位置
         const currentLocationName = ref('');
-        const searchRange = ref(200); // 查询范围，默认200米
+        const searchRange = ref(500); // 查询范围，默认200米
         const placeType = ref('all'); // 场所种类
         const searchResults = ref([]); // 搜索结果
         const router = useRouter(); // vue-router
