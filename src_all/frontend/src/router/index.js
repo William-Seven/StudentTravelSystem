@@ -12,6 +12,7 @@ import Description from '../components/myDescription.vue';
 import PlaceQuery from '../components/PlaceQuery.vue';
 import StudyTourDiary from '../components/StudyTourDiary.vue';
 import DiaryDetail from '../components/DiaryDetail.vue';
+//import WriteDiary from '../components/WriteDiary.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -26,6 +27,7 @@ const routes = [
     { path: '/place-query', component: PlaceQuery },
     { path: '/study-tour-diary', component: StudyTourDiary },
     { path: '/diary-detail', component: DiaryDetail },
+    //{ path: '/write-diary', component: WriteDiary },
 ];
 
 const router = createRouter({
