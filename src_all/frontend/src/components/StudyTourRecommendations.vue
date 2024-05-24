@@ -2,6 +2,7 @@
 <template>
   <div class="study-tour-recommendations">
     <h1>游学推荐</h1>
+    <button @click="goToDashboard">返回首页</button>
     <!-- 筛选选项 -->
     <div class="filters">
       <select v-model="filterType">
@@ -95,6 +96,11 @@ export default {
       router.push(`/description`);
     };
 
+// 定义跳转到首页的函数
+      const goToDashboard = () => {
+        router.push('/dashboard');
+      };
+
     // 初始化获取数据
     fetchRecommendations();
 
@@ -106,6 +112,7 @@ export default {
       searchKeyword,
       search,
       goToDescription,
+      goToDashboard,
     };
   },
 };

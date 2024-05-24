@@ -8,6 +8,7 @@
     <!-- 可以添加更多固定内容 -->
     <!-- 跳转到路线规划页面的按钮 -->
     <button @click="goToRoutePlanner">开始路线规划</button>
+    <button @click="goToDashboard">返回首页</button>
   </div>
 </template>
 
@@ -23,10 +24,16 @@ export default {
     // 定义跳转到路线规划页面的函数
     const goToRoutePlanner = () => {
       router.push('/route-planning');
-    };
+      };
+
+      // 定义跳转到首页的函数
+      const goToDashboard = () => {
+        router.push('/dashboard');
+      };
 
     return {
       goToRoutePlanner, // 将函数暴露给模板
+      goToDashboard,
     };
   },
 };

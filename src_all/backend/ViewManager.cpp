@@ -5,7 +5,7 @@
 #include <vector>
 #include "Kmp.h"
 
-#define TEST_MAXSIZE 220
+#define TEST_MAXSIZE 221
 
 // void get_nextval(std::string t, int nextval[]);
 // bool kmp(std::string t, std::string s);

@@ -2,6 +2,7 @@
 <template>
   <div class="route-planner">
     <h1>路线规划</h1>
+<button @click="goToDashboard">返回首页</button>
     <!-- 选择景区或校园 -->
     <div>
       <button @click="selectArea('scenic')">景区</button>
@@ -47,6 +48,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'RoutePlanner',
@@ -60,6 +62,7 @@ export default {
     const transport = ref('walk');
     const error = ref('');
     const routeInfo = ref('');
+const router = useRouter();
 
 // 新增重置字段的函数
     const resetFields = () => {
@@ -111,6 +114,11 @@ export default {
       }
     };
 
+// 定义跳转到首页的函数
+      const goToDashboard = () => {
+        router.push('/dashboard');
+      };
+
     return {
       currentArea,
       routeType,
@@ -126,6 +134,7 @@ export default {
         searchRoute,
       toggleRouteType,
       resetFields,
+      goToDashboard,
     };
   },
 };
