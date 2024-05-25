@@ -1,5 +1,6 @@
 #include "Diary.h"
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <string>
 #include "Kmp.h"
@@ -19,6 +20,7 @@ Diary::Diary(std::string title, std::string author, std::string destination, std
 void Diary::DiaryPrint() {
     std::cout << title << " " << author << " " << destination << "\n";
     std::cout << content << "\n";
+    std::cout << std::fixed << std::setprecision(1);
     std::cout << popularity << " " << ((double)rating) / 10000 << "\n";
 }
 

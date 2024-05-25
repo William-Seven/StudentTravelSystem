@@ -16,6 +16,8 @@ class DiaryManager {
     void diarySearch(std::string search_title, std::string search_author, std::string search_destination, std::string search_content, int search_mode);
     void diaryDownload();
     void diaryUncompress(std::string path);
+    int up_popularity(std::string content);
+    int update_rate(std::string content, int new_rating);
 };
 
 #endif

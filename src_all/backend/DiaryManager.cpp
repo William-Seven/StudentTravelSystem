@@ -105,7 +105,30 @@ void DiaryManager::diaryDownload() {
     */
 }
 
+// 文件解压
 void DiaryManager::diaryUncompress(std::string path) {
     FileCompress cps;
     cps.UnCompress(path.c_str());
+}
+
+// 热度自增
+int DiaryManager::up_popularity(std::string content) {
+    for (Diary diary : diaries) {
+        if (kmp(content, diary.content)) {
+            diary.popularity += 10;
+            return diary.popularity;
+        }
+    }
+    return -1;
+}
+
+// 日记评分
+int DiaryManager::update_rate(std::string content, int new_rating) {
+    for (Diary diary : diaries) {
+        if (kmp(content, diary.content)) {
+            diary.rating = (diary.rating + new_rating) / 2;
+            return diary.rating;
+        }
+    }
+    return -1;
 }

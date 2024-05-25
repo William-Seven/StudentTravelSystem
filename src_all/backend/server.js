@@ -328,6 +328,79 @@ app.post('/api/diary-uncompress', (req, res) => {
     });
 });
 
+//游学日记热度api
+app.post('/api/diary-popularity', (req, res) => {
+    let { content } = req.body;
+
+    const diaryPopularityProcess = spawn('./diaryPopularity', [content]);
+
+    let output = '';
+    diaryPopularityProcess.stdout.on('data', (data) => {
+        output += data.toString();
+    });
+
+    diaryPopularityProcess.on('close', (code) => {
+        if (code === 0) {
+            // 假设C++程序返回0表示成功
+            res.status(200).json({
+                success: true,
+                popularity: output
+            });
+        } else {
+            // 如果C++程序返回非0值，表示有错误发生
+            res.status(500).json({
+                success: false,
+                error: 'Failed to calculate popularity'
+            });
+        }
+    });
+
+    diaryPopularityProcess.on('error', (err) => {
+        console.error('Spawn error:', err);
+        res.status(500).json({
+            success: false,
+            error: 'Server internal error'
+        });
+    });
+});
+
+//日记评分api
+app.post('/api/diary-rating', (req, res) => {
+    let { content, rating } = req.body;
+
+    //评分乘10000
+    const rate = rating * 10000;
+    const diaryRatingProcess = spawn('./diaryRating', [content, rate]);
+
+    let output = '';
+    diaryRatingProcess.stdout.on('data', (data) => {
+        output += data.toString();
+    });
+
+    diaryRatingProcess.on('close', (code) => {
+        if (code === 0) {
+            // 假设C++程序返回0表示成功
+            res.status(200).json({
+                success: true,
+                //info: output
+            });
+        } else {
+            // 如果C++程序返回非0值，表示有错误发生
+            res.status(500).json({
+                success: false,
+            });
+        }
+    });
+
+    diaryRatingProcess.on('error', (err) => {
+        console.error('Spawn error:', err);
+        res.status(500).json({
+            success: false,
+            error: 'Server internal error'
+        });
+    });
+});
+
 // 游学日记写入api
 
 
