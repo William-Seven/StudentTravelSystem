@@ -52,7 +52,7 @@ void DiaryTest(int mode, std::string title, std::string author, std::string dest
             mysql_query(&my_sql, query.c_str());
             std::cout << newpopularity;
         }
-    } else {
+    } else if (mode == 4) {
         int newrating = diaryManager.update_rate(content, sortWay);
         if (newrating != -1) {
             std::string newrating_str = std::to_string(newrating);
@@ -60,6 +60,11 @@ void DiaryTest(int mode, std::string title, std::string author, std::string dest
             mysql_query(&my_sql, query.c_str());
             std::cout << newrating;
         }
+    } else {
+        // 写日记到数据库
+        std::string query = "INSERT INTO diary (title, authorID, destination, content, popularity, rating) VALUES ('" + title + "', '" + author + "', '" + destination + "', '" + content + "', 5000, 40000)";
+        mysql_query(&my_sql, query.c_str());
+        std::cout << "写入成功\n";
     }
 
     // 关闭数据库

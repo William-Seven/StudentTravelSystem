@@ -402,7 +402,39 @@ app.post('/api/diary-rating', (req, res) => {
 });
 
 // 游学日记写入api
+app.post('/api/diary-write', (req, res) => {
+    let { title, author, description, content } = req.body;
 
+    const diaryWriteProcess = spawn('./diaryWrite', [title, author, description, content]);
+
+    let output = '';
+    diaryWriteProcess.stdout.on('data', (data) => {
+        output += data.toString();
+    });
+
+    diaryWriteProcess.on('close', (code) => {
+        if (code === 0) {
+            // 假设C++程序返回0表示成功
+            res.status(200).json({
+                success: true,
+                //info: output
+            });
+        } else {
+            // 如果C++程序返回非0值，表示有错误发生
+            res.status(500).json({
+                success: false,
+            });
+        }
+    });
+
+    diaryWriteProcess.on('error', (err) => {
+        console.error('Spawn error:', err);
+        res.status(500).json({
+            success: false,
+            error: 'Server internal error'
+        });
+    });
+});
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
