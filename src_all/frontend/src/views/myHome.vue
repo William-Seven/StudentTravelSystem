@@ -110,6 +110,11 @@ export default {
   border-radius: 8px; /* 添加圆角 */
 }
 
+button:hover {
+  background-color: #56cfcf;
+}
+
+
 @keyframes rotate {
   0% {
     transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(0);
