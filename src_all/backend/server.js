@@ -144,7 +144,7 @@ app.post('/api/recommendation', (req, res) => {
     });
 });
 
-//路线规划api
+//路线规划景区api
 app.post('/api/route-plan', (req, res) => {
     let { startPoint, endPoint, currentLocation, viaPoints, transport, area } = req.body;
 
@@ -157,6 +157,50 @@ app.post('/api/route-plan', (req, res) => {
     }
 
     const routePlannerProcess = spawn('./routePlanner', args);
+
+    let output = '';
+    routePlannerProcess.stdout.on('data', (data) => {
+        output += data.toString().replace(/\n/g, '<br>');
+    });
+
+    routePlannerProcess.on('close', (code) => {
+        if (code === 0) {
+            // 假设 C++ 程序返回 0 表示路线规划成功
+            res.status(200).json({
+                success: true,
+                info: output
+            });
+        } else {
+            // 如果C++程序返回非0值，表示有错误发生
+            res.status(200).json({
+                success: false,
+                error: '路线规划失败'
+            });
+        }
+    });
+
+    routePlannerProcess.on('error', (err) => {
+        console.error('Spawn error:', err);
+        res.status(500).json({
+            success: false,
+            error: '服务器内部错误'
+        });
+    });
+});
+
+//路线规划学校api
+app.post('/api/route-plansc', (req, res) => {
+    let { startPoint, endPoint, currentLocation, viaPoints, transport, area } = req.body;
+
+    // 根据area和transport构建调用参数
+    let args = [area, transport];
+    if (startPoint && endPoint) {
+        args.push('1', startPoint, endPoint);
+    } else if (currentLocation && viaPoints) {
+        args.push('2', currentLocation, ...viaPoints);
+    }
+
+    const routePlannerProcess = spawn('./routePlannerSc', args);
 
     let output = '';
     routePlannerProcess.stdout.on('data', (data) => {

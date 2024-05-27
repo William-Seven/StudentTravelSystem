@@ -112,7 +112,8 @@ export default {
 
     const searchRoute = async () => {
       try {
-        const response = await axios.post('/api/route-plan', {
+        const apiUrl = currentArea.value === 'campus' ? '/api/route-plansc' : '/api/route-plan';
+        const response = await axios.post(apiUrl, {
           area: currentArea.value,
           type: routeType.value,
           startPoint: startPoint.value,
