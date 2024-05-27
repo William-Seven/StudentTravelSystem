@@ -97,8 +97,11 @@ export default {
     };
 
     // 跳转到描述页面
-    const goToDescription = () => {
-      router.push(`/description`);
+    const goToDescription = (item) => {
+      // 根据item.type的值来决定跳转的路由
+  const path = item.type === 'scenic' ? '/description' : '/descriptionsc';
+  router.push(path);
+      //router.push(`/description`);
     };
 
 // 定义跳转到首页的函数
