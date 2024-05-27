@@ -3,6 +3,11 @@
     <div class="place-query">
         <h1>场所查询</h1>
         <button @click="goToDashboard">返回首页</button>
+        <button @click="toggleArea('scenic')">景区</button>
+        <button @click="toggleArea('campus')">校园</button>
+        <div v-if="area">
+            <h2>{{ area === 'scenic' ? '景区场所' : '校园场所' }}</h2>
+        </div>
         <!-- 当前位置输入 -->
         <div>
             <label for="currentLocation">当前位置:</label>
@@ -29,6 +34,13 @@
                 <option value="广播">广播</option>
                 <option value="医务室">医务室</option>
                 <option value="服务厅">服务厅</option>
+                <option value="停车场">停车场</option>
+                <option value="快递站">快递站</option>
+                <option value="体育场">体育场</option>
+                <option value="图书馆">图书馆</option>
+                <option value="医院">医院</option>
+                <option value="酒店">酒店</option>
+                <!-- 添加更多场所种类选项 -->
             </select>
         </div>
         <!-- 搜索按钮 -->
@@ -51,7 +63,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 
@@ -63,7 +75,20 @@ export default {
         const searchRange = ref(500); // 查询范围，默认200米
         const placeType = ref('all'); // 场所种类
         const searchResults = ref([]); // 搜索结果
+        const area = ref('scenic'); 
         const router = useRouter(); // vue-router
+
+        const resetFields = () => {
+            currentLocation.value = '';
+            currentLocationName.value = '';
+            searchRange.value = 500;
+            placeType.value = 'all';
+            searchResults.value = [];
+        };
+
+        onMounted(() => {
+            resetFields();
+        });
 
         //解析后端返回的JSON数据
         const parseSearchResults = (data) => {
@@ -81,7 +106,8 @@ export default {
         // 搜索场所
         const search = async () => {
             try {
-                const response = await axios.post('/api/place-query', {
+                const apiUrl = area.value === 'campus' ? '/api/place-querysc' : '/api/place-query';
+                const response = await axios.post(apiUrl, {
                     currentLocation: currentLocation.value,
                     searchRange: searchRange.value,
                     placeType: placeType.value,
@@ -94,6 +120,11 @@ export default {
             } catch (err) {
                 console.error('Error searching places:', err);
             }
+        };
+
+        const toggleArea = (newArea) => {
+            area.value = newArea;
+            // 可以在这里添加额外的逻辑，比如重置搜索结果
         };
 
         // 跳转到首页
@@ -109,7 +140,7 @@ export default {
                 path: '/route-planning',
                 query: {
                     startPoint: startPointId,
-                    endPoint: endPointId
+                    endPoint: endPointId,
                 }
             });
         };
@@ -123,6 +154,9 @@ export default {
             search,
             goToDashboard,
             goToRoutePlanner,
+            toggleArea,
+            area,
+            resetFields,
         };
     },
 };

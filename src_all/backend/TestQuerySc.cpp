@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
     }
 
     // 查询nodes
-    mysql_query(&my_sql, "select * from nodes;");
+    mysql_query(&my_sql, "select * from nodessc;");
 
     // 获取结果集
     int count = 0;
@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
     g.size = count;
 
     // 查询edge
-    mysql_query(&my_sql, "select * from edge;");
+    mysql_query(&my_sql, "select * from edgesc;");
 
     // 获取结果集
     res = mysql_store_result(&my_sql);
