@@ -1,42 +1,45 @@
 <!-- StudyTourDiary.vue -->
 <template>
-    <div class="study-tour-diary">
-        <h1>游学日记</h1>
-        <button @click="goToDashboard">返回首页</button>
-        <!-- 四个搜索框 -->
-        <div>
-            <input type="text" v-model="searchTitle" placeholder="搜索标题">
-            <input type="text" v-model="searchAuthor" placeholder="搜索作者名">
-            <input type="text" v-model="searchDescription" placeholder="搜索描述对象">
-            <input type="text" v-model="searchContent" placeholder="搜索内容">
+    <div class="background"></div>
+    <form class="form">
+        <div class="study-tour-diary">
+            <h1 class="title">游学日记</h1>
+            <button class="return_button" @click.prevent="goToDashboard">返回首页</button>
+            <!-- 四个搜索框 -->
+            <div class="input-container">
+                <input class="input1" type="text" v-model="searchTitle" placeholder="搜索标题">
+                <input class="input2" type="text" v-model="searchAuthor" placeholder="搜索作者名">
+                <input class="input3" type="text" v-model="searchDescription" placeholder="搜索描述对象">
+                <input class="input4" type="text" v-model="searchContent" placeholder="搜索内容">
+            </div>
+            <!-- 排序选择 -->
+            <div class="choose-container">
+                <label for="sort">排序方式:</label>
+                <select id="sort" v-model="sort">
+                    <option value='0'>热度</option>
+                    <option value='1'>评分</option>
+                </select>
+            </div>
+            <!-- 搜索按钮 -->
+            <button class="search_button" @click.prevent="searchDiaries">搜索</button>
+            <!-- 下载按钮，仅在有日记时显示 -->
+            <button class="download_button" v-if="diaries.length" @click.prevent="downloadDiaries">下载日记</button>
+            <!-- 游学日记列表 -->
+            <ul v-if="diaries.length" class="diary-list">
+                <li v-for="diary in diaries" :key="diary.title" class="diary-item">
+                    <p>标题：{{ diary.title }}</p>
+                    <p>作者：{{ diary.author }}</p>
+                    <p>描述对象：{{ diary.description }}</p>
+                    <p>热度：{{ diary.popularity }}</p>
+                    <p>评分：{{ diary.rating }}</p>
+                    <button @click.prevent="goToDiaryDetail(diary)">详情</button>
+                </li>
+            </ul>
+            <p class="error" v-else>没有找到相关日记。</p>
+            <!-- 写日记按钮 -->
+            <button class="write_button" @click.prevent="goToWriteDiary">写日记</button>
         </div>
-        <!-- 排序选择 -->
-        <div>
-            <label for="sort">排序方式:</label>
-            <select id="sort" v-model="sort">
-                <option value='0'>热度</option>
-                <option value='1'>评分</option>
-            </select>
-        </div>
-        <!-- 搜索按钮 -->
-        <button @click="searchDiaries">搜索</button>
-        <!-- 下载按钮，仅在有日记时显示 -->
-        <button v-if="diaries.length" @click="downloadDiaries">下载日记</button>
-        <!-- 游学日记列表 -->
-        <ul v-if="diaries.length" class="diary-list">
-            <li v-for="diary in diaries" :key="diary.title" class="diary-item">
-                <p>标题：{{ diary.title }}</p>
-                <p>作者：{{ diary.author }}</p>
-                <p>描述对象：{{ diary.description }}</p>
-                <p>热度：{{ diary.popularity }}</p>
-                <p>评分：{{ diary.rating }}</p>
-                <button @click="goToDiaryDetail(diary)">详情</button>
-            </li>
-        </ul>
-        <p v-else>没有找到相关日记。</p>
-        <!-- 写日记按钮 -->
-        <button @click="goToWriteDiary">写日记</button>
-    </div>
+    </form>
 </template>
 
 <script>
@@ -199,3 +202,139 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-attachment: fixed;
+  overflow: hidden;
+  background-image: url('~@/assets/img/background.png');
+  background-size: cover;
+}
+
+.background::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('~@/assets/img/background.png');
+  background-size: cover;
+  background-attachment: fixed;
+  z-index: -1; /* 确保背景层在内容层之下 */
+}
+
+.form {
+  position: absolute;
+  transform: translate(-50%, 0%);
+  padding:2%;
+  top: 10%;
+  left:50%;
+  width: 45%;
+  min-height: 500px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 20px; /* 设置圆角为20像素 */
+  /* 其他样式，例如边框、阴影等 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加轻微的阴影效果 */
+}
+
+.title {
+  color: #fefefe;
+  font-size: 4em; /* 设置字号大小 */
+  margin:0%;
+  font-family: 'STKaiti', 'KaiTi', sans-serif; /* 优先使用华文楷体，如果不可用则使用无衬线字体 */
+  max-width: 80%;
+  margin-top: 0vh; 
+  text-align: center;
+  margin-left: auto; /* 左外边距自动 */
+  margin-right: auto; /* 右外边距自动 */
+  margin-bottom: 0.5em;
+}
+
+button {
+  justify-content: space-between;
+  margin: auto;
+  font-size: 1em;
+  border: 1px solid #000; /* 边框样式，可以根据需要调整 */
+  cursor: pointer; /* 鼠标悬停时显示指针手势 */
+  border-radius: 8px; /* 添加圆角 */
+}
+
+button:hover {
+  background-color: #56cfcf;
+}
+
+.return_button {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 2em;
+  left: 10%;
+}
+
+.input1, .input2, .input3, .input4 {
+  color: #000000;
+  font-size: 1em;
+  font-family: 'STKaiti', 'KaiTi', sans-serif;
+  position: relative;
+  width:20%;
+  border-radius: 8px; /* 添加圆角 */
+  margin-left: 1em;
+}
+
+.input-container {
+  text-align: center;
+  margin-left: auto; /* 左外边距自动 */
+  margin-right: auto; /* 右外边距自动 */
+}
+
+.choose-container {
+  text-align: center;
+  margin-left: auto; /* 左外边距自动 */
+  margin-right: auto; /* 右外边距自动 */
+  color: #fefefe;
+  margin:0%;
+  font-family: 'STKaiti', 'KaiTi', sans-serif; /* 优先使用华文楷体，如果不可用则使用无衬线字体 */
+  margin-top: 1em;
+}
+
+.search_button {
+  text-align: center;
+  font-size: 1.5em;
+  margin-top: 0.5em;
+  margin-left: auto; /* 左外边距自动 */
+  margin-right: auto; /* 右外边距自动 */
+  display: block;
+}
+
+.write_button {
+  text-align: center;
+  font-size: 1.5em;
+  margin-top: 0.5em;
+  margin-left: auto; /* 左外边距自动 */
+  margin-right: auto; /* 右外边距自动 */
+  display: block;
+}
+
+.diary-item {
+  color: #fefefe;
+  margin-bottom: 3em;
+}
+
+.error{
+  color: #fefefe;
+  font-size: 2em; /* 设置字号大小 */
+  font-family: 'STKaiti', 'KaiTi', sans-serif; /* 优先使用华文楷体，如果不可用则使用无衬线字体 */
+  max-width: 80%;
+  text-align: center;
+  margin-left: auto; /* 左外边距自动 */
+  margin-right: auto; /* 右外边距自动 */
+  margin-bottom:2vh;
+}
+
+</style>
