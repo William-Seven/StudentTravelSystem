@@ -34,7 +34,7 @@
           <p>热度：{{ item.popularity }} </p>
           <p>评分：{{ item.rating }} </p>
           <!-- 点击跳转到描述页面 -->
-          <button @click.prevent="goToDescription">详情</button>
+          <button @click.prevent="goToDescription(item)">详情</button>
         </li>
       </ul>
     </div>
@@ -99,8 +99,8 @@ export default {
     // 跳转到描述页面
     const goToDescription = (item) => {
       // 根据item.type的值来决定跳转的路由
-  const path = item.type === 'scenic' ? '/description' : '/descriptionsc';
-  router.push(path);
+      const path = (item.type === 'attraction') ? '/description' : '/descriptionsc';
+      router.push(path);
       //router.push(`/description`);
     };
 
