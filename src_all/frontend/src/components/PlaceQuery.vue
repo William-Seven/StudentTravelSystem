@@ -141,6 +141,7 @@ export default {
                 query: {
                     startPoint: startPointId,
                     endPoint: endPointId,
+                    area: area.value,
                 }
             });
         };

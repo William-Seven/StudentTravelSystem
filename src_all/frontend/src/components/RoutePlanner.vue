@@ -88,6 +88,11 @@ export default {
       // 组件挂载时重置字段
       resetFields();
 
+      // 检查URL查询参数中的area
+      if (query.area) {
+        selectArea(query.area); // 根据查询参数设置当前区域
+      }
+
       // 设置起点和终点
       if (query.startPoint && query.endPoint) {
         startPoint.value = query.startPoint;
@@ -104,6 +109,8 @@ export default {
       resetFields(); // 添加重置字段操作
       currentArea.value = area;
       //routeType.value = 'pointToPoint'; // 默认选择点对点路线规划
+      routeType.value = currentArea.value === 'campus' ? 'pointToPoint' : 'pointToPoint';
+      transport.value = currentArea.value === 'campus' ? 'bike' : 'walk';
     };
 
     const addViaPoint = () => {
