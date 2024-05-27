@@ -165,6 +165,10 @@ button {
   border-radius: 8px; /* 添加圆角 */
 }
 
+button:hover {
+  background-color: #56cfcf;
+}
+
 .register_button {
   position: absolute;
   bottom: 20%;
