@@ -51,7 +51,7 @@ export default {
   padding: 0;
   background-attachment: fixed;
   overflow: hidden;
-  background-image: url('~@/assets/img/background.png');
+  background-image: url('~@/assets/img/BUPT.jpg');
   background-size: cover;
 }
 
@@ -77,7 +77,7 @@ export default {
   width: 45%;
   min-height: 500px;
   background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(3px);
   border-radius: 20px; /* 设置圆角为20像素 */
   /* 其他样式，例如边框、阴影等 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加轻微的阴影效果 */

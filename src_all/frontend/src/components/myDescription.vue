@@ -51,7 +51,7 @@ export default {
   padding: 0;
   background-attachment: fixed;
   overflow: hidden;
-  background-image: url('~@/assets/img/background.png');
+  background-image: url('~@/assets/img/the-palace-museum-forbidden-city.jpg');
   background-size: cover;
 }
 
@@ -77,14 +77,14 @@ export default {
   width: 45%;
   min-height: 500px;
   background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(2px);
   border-radius: 20px; /* 设置圆角为20像素 */
   /* 其他样式，例如边框、阴影等 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加轻微的阴影效果 */
 }
 
 .title {
-  color: #fefefe;
+  color: #000000;
   font-size: 4em; /* 设置字号大小 */
   margin:0%;
   font-family: 'STKaiti', 'KaiTi', sans-serif; /* 优先使用华文楷体，如果不可用则使用无衬线字体 */
@@ -96,7 +96,7 @@ export default {
 }
 
 .subtitle {
-  color: #fefefe;
+  color: #000000;
   font-size: 2em; /* 设置字号大小 */
   font-family: 'STKaiti', 'KaiTi', sans-serif; /* 优先使用华文楷体，如果不可用则使用无衬线字体 */
   max-width: 80%;
@@ -108,7 +108,7 @@ export default {
 }
 
 .content {
-  color: #fefefe;
+  color: #000000;
   font-size: 1.2em; /* 设置字号大小 */
   font-family: 'STKaiti', 'KaiTi', sans-serif; /* 优先使用华文楷体，如果不可用则使用无衬线字体 */
   margin:1em;
