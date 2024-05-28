@@ -1,6 +1,9 @@
 <!-- RoutePlanner.vue -->
 <template>
   <div class="background"></div>
+  <div v-show="currentArea" class="map-container">
+        <img :src="currentArea === 'scenic' ? require('@/assets/map/map.png') : require('@/assets/map/mapsc.png')" alt="Map">
+    </div>
   <div class="route-planner">
     <form class="form1">
       <h1 class="title">路线规划</h1>
@@ -314,10 +317,33 @@ button:hover {
   color: #fefefe;
   font-size: 1em; /* 设置字号大小 */
   font-family: 'STKaiti', 'KaiTi', sans-serif; /* 优先使用华文楷体，如果不可用则使用无衬线字体 */
-  max-width: 80%;
+  max-width: 95%;
   margin-top: 0.5em;
   margin-left: 1em;
   margin-bottom:2vh;
 }
+
+.map-container {
+  position: absolute;
+  top: 5%;
+  right: 0%;
+  width: 50%;
+  max-width: 95%; /* 确保地图容器的最大宽度不超过页面宽度 */
+  height: 95%;
+  max-height: 100%; /* 确保地图容器的最大高度不超过页面高度 */
+  background-color: transparent;
+  overflow: auto; /* 如果内容超出容器大小，添加滚动条 */
+}
+
+.map-container img {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  right:0%;
+  max-width: 96%; /* 确保图片的最大宽度不超过其容器的宽度 */
+  max-height: 96%; /* 确保图片的最大高度不超过其容器的高度 */
+  object-fit: contain; /* 保持图片的宽高比，确保图片完整显示在容器内 */
+}
+
 
 </style>
