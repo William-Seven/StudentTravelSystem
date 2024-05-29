@@ -1,0 +1,35 @@
+CREATE TABLE `diary` (
+  `title` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `authorID` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `destination` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `popularity` int unsigned DEFAULT NULL,
+  `rating` int DEFAULT NULL,
+  `score` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('美好的一天', 'William', '北京邮电大学', '今天在北京邮电大学打了羽毛球，体验很好', 7350, 46816, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('美好的一天', 'HHH', '北京大学', '今天在未名湖畔散步，心情愉悦', 2345, 10000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('愉快的周末', 'HHH', '清华大学', '参加了清华的讲座，受益匪浅', 3456, 20000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('秋日漫步', 'Redcap', '中山公园', '秋天的中山公园格外美丽', 5678, 30000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('校园生活', 'Redcap', '复旦大学', '复旦的图书馆真是学习的好地方', 2345, 15000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('雨后清新', 'Redcap', '武汉大学', '雨后的武大樱花道清新宜人', 4567, 25000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('历史之旅', 'William', '故宫博物院', '故宫的历史沉淀让人着迷', 1000, 40000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('自然探索', 'Lucia', '黄山', '黄山的奇松怪石让人赞叹', 2000, 13000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('文化体验', 'Lucia', '颐和园', '颐和园的文化底蕴深厚', 3000, 45000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('春日游园', 'Lucia', '南京大学', '南大的春天，花香四溢', 4000, 12000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('夏日海边', 'William', '青岛海滨', '夏日的青岛海边凉爽宜人', 5000, 11000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('古迹探访', 'William', '长城', '长城的雄伟令人震撼', 6000, 21000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('秋色宜人', '测试', '杭州西湖', '秋天的西湖美景如画', 7000, 33000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('冬日暖阳', '测试', '哈尔滨工业大学', '哈工大的冬日阳光温暖人心', 8000, 44000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('山川壮丽', '测试', '九寨沟', '九寨沟的山水让人心旷神怡', 9010, 29500, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('城市夜景', '测试', '上海外滩', '外滩的夜景璀璨夺目', 1500, 24000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('乡村风光', 'William', '婺源', '婺源的乡村风光宁静祥和', 2500, 35000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('节日庆典', 'Seven', '广州塔', '广州塔的跨年烟火绚丽多彩', 3510, 45000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('学术氛围', 'Seven', '浙江大学', '浙大的学术氛围浓厚', 4500, 13000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('自然奇观', 'Seven', '张家界', '张家界的自然景观令人赞叹', 5500, 23000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('历史遗迹', 'William', '秦始皇兵马俑', '参观兵马俑，感受千年文化', 6500, 34000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('海滨日落', 'William', '三亚海滨', '观看三亚的日落，宁静美好', 7500, 45000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('忙碌的一天', 'William', '北京邮电大学', '好忙啊哦哦哦', 5000, 40000, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('大功告成', 'William', '北京邮电大学', '今天下雨了，好凉快', 5010, 42500, NULL);
+INSERT INTO `test3`.`diary` (`title`, `authorID`, `destination`, `content`, `popularity`, `rating`, `score`) VALUES ('真的很长', '真的很长', '真的很长', '真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长真的很长', 5100, 40000, NULL);

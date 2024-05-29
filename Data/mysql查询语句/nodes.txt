@@ -1,0 +1,86 @@
+CREATE TABLE `nodes` (
+  `ID` int unsigned NOT NULL AUTO_INCREMENT,
+  `Type` int unsigned DEFAULT NULL,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+SET sql_mode='NO_AUTO_VALUE_ON_ZERO';
+ALTER TABLE nodes AUTO_INCREMENT = 0;
+
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (0, 2, '武英门卫生间', '卫生间');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (1, 2, '熙和门卫生间', '卫生间');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (2, 2, '协和门卫生间', '卫生间');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (3, 2, '隆宗门卫生间', '卫生间');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (4, 2, '内右门卫生间（左）', '卫生间');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (5, 2, '内右门卫生间（右）', '卫生间');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (6, 2, '御花园西卫生间', '卫生间');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (7, 2, '御花园东卫生间', '卫生间');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (8, 2, '畅音阁卫生间', '卫生间');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (9, 2, '冰窑咖啡厅', '餐饮');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (10, 2, '景运门餐厅', '餐饮');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (11, 2, '静憩斋食品店', '餐饮');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (12, 2, '临溪亭东配殿商店', '商店');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (13, 2, '文华门商店', '商店');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (14, 2, '冬奥会特许零售店', '商店');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (15, 2, '永和宫药馆', '商店');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (16, 2, 'VR体验馆', '商店');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (17, 2, '广播室', '广播');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (18, 2, '故宫急救站', '医务室');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (19, 2, '语音导览器-出借', '服务厅');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (20, 2, '语音导览器-归还', '服务厅');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (21, 1, '午门', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (22, 1, '金水桥', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (23, 1, '太和门', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (24, 1, '贞度门', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (25, 1, '昭德门', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (26, 1, '弘义门', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (27, 1, '体仁阁', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (28, 1, '太和殿', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (29, 1, '中和殿', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (30, 1, '保和殿', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (31, 1, '乾清门', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (32, 1, '乾清宫', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (33, 1, '交泰殿', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (34, 1, '坤宁宫', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (35, 1, '钦安殿', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (36, 1, '寿安宫', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (37, 1, '咸福宫', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (38, 1, '储秀宫', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (39, 1, '长春宫', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (40, 1, '翊坤宫', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (41, 1, '太极殿', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (42, 1, '永寿宫', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (43, 1, '寿康宫', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (44, 1, '大佛殿', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (45, 1, '慈宁宫', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (46, 1, '养心殿', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (47, 1, '慈宁宫花园', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (48, 1, '武英殿', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (49, 1, '军机处', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (50, 1, '钟粹宫', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (51, 1, '景阳宫', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (52, 1, '承乾宫', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (53, 1, '永和宫药馆', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (54, 1, '景仁宫', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (55, 1, '斋宫', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (56, 1, '奉先宫', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (57, 1, '景运门', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (58, 1, '乐寿堂', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (59, 1, '养性殿', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (60, 1, '皇极殿', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (61, 1, '文渊阁', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (62, 1, '文华殿', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (63, 1, '宁寿门', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (64, 1, '皇极门', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (65, 1, '九龙壁', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (66, 1, '养性门', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (67, 1, '后右门', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (68, 1, '后左门', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (69, 1, '中右门', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (70, 1, '中左门', '景点建筑');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (71, 1, '故宫南门（入口）', '出入口');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (72, 1, '故宫北门（出口）', '出入口');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (73, 1, '珍宝馆入口', '出入口');
+INSERT INTO `test3`.`nodes` (`ID`, `Type`, `Name`, `Description`) VALUES (74, 1, '珍宝馆出口', '出入口');

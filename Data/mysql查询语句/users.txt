@@ -1,0 +1,20 @@
+CREATE TABLE `users` (
+  `username` varchar(20) DEFAULT NULL,
+  `password` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `test3`.`users` (`username`, `password`) VALUES ('William', '2024bupt');
+INSERT INTO `test3`.`users` (`username`, `password`) VALUES ('Redcap', 'Xl123666');
+INSERT INTO `test3`.`users` (`username`, `password`) VALUES ('Seven', '7777777');
+INSERT INTO `test3`.`users` (`username`, `password`) VALUES ('Lucia', 'Lxy20040513');
+INSERT INTO `test3`.`users` (`username`, `password`) VALUES ('test', 'test.4');
+INSERT INTO `test3`.`users` (`username`, `password`) VALUES ('abcd', '20240508');
+INSERT INTO `test3`.`users` (`username`, `password`) VALUES ('apple', 'BUPT');
+INSERT INTO `test3`.`users` (`username`, `password`) VALUES ('HateVue', 'LikeVue');
+INSERT INTO `test3`.`users` (`username`, `password`) VALUES ('HHH', 'HAHAHA');
+INSERT INTO `test3`.`users` (`username`, `password`) VALUES ('hello', 'world');
+INSERT INTO `test3`.`users` (`username`, `password`) VALUES ('你好', 'hello');
+INSERT INTO `test3`.`users` (`username`, `password`) VALUES ('测试Today', '1234567');
+INSERT INTO `test3`.`users` (`username`, `password`) VALUES ('MORINA', 'jjm123456');
+INSERT INTO `test3`.`users` (`username`, `password`) VALUES ('root', '123');
+INSERT INTO `test3`.`users` (`username`, `password`) VALUES ('1', '1');

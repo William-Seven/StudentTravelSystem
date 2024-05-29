@@ -1,0 +1,74 @@
+CREATE TABLE `nodessc` (
+  `ID` int unsigned NOT NULL AUTO_INCREMENT,
+  `Type` int unsigned DEFAULT NULL,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+SET sql_mode='NO_AUTO_VALUE_ON_ZERO';
+ALTER TABLE nodessc AUTO_INCREMENT = 0;
+
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (0, 2, '北邮锦江酒店', '酒店');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (1, 1, '学十一公寓', '宿舍楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (2, 1, '学九公寓', '宿舍楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (3, 1, '教九楼', '教学楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (4, 1, '学十公寓', '宿舍楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (5, 1, '青年公寓', '宿舍楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (6, 1, '留学生公寓', '宿舍楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (7, 2, '综合食堂', '餐饮');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (8, 1, '学十三公寓', '宿舍楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (9, 1, '学五公寓', '宿舍楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (10, 1, '学八公寓', '宿舍楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (11, 1, '喷泉（左）', '景点');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (12, 1, '喷泉（右）', '景点');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (13, 1, '学三公寓', '宿舍楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (14, 1, '学四公寓', '宿舍楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (15, 1, '学一公寓', '宿舍楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (16, 1, '学二公寓', '宿舍楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (17, 1, '鸿通楼', '办公楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (18, 2, '邮局', '邮局');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (19, 2, 'ATM', '银行');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (20, 1, '教四楼', '教学楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (21, 1, '校训石', '景点');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (22, 1, '主席像', '景点');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (23, 2, '停车坪', '停车场');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (24, 2, '校车车库', '停车场');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (25, 1, '教三楼', '教学楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (26, 1, '家属区（南）', '宿舍楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (27, 2, '校医院', '医院');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (28, 2, '菜鸟快递站', '快递站');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (29, 1, '经管楼', '教学楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (30, 1, '学六公寓', '宿舍楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (31, 1, '学生活动中心', '办公楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (32, 1, '综合服务楼', '办公楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (33, 2, '物美超市', '商店');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (34, 1, '学生发展中心', '办公楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (35, 2, '学苑风味食堂', '餐饮');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (36, 1, '小松林', '景点');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (37, 1, '时光广场', '景点');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (38, 2, '图书馆', '图书馆');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (39, 1, '行政办公楼', '办公楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (40, 1, '教一楼', '教学楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (41, 1, '音乐喷泉', '景点');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (42, 1, '主楼', '办公楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (43, 1, '教二楼', '教学楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (44, 1, '家属区（北）', '宿舍楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (45, 1, '科研楼', '办公楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (46, 2, '学生食堂', '餐饮');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (47, 1, '后勤处、保卫处 ', '办公楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (48, 2, '篮球场', '体育场');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (49, 1, '学29公寓', '宿舍楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (50, 2, '体育馆', '体育场');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (51, 1, '科学会堂', '办公楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (52, 1, '创新楼', '办公楼');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (53, 2, '体育场', '体育场');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (54, 1, '路口1', '路口');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (55, 1, '路口2', '路口');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (56, 1, '路口3', '路口');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (57, 1, '路口4', '路口');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (58, 1, '北门', '大门');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (59, 1, '西门', '大门');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (60, 1, '南门', '大门');
+INSERT INTO `test3`.`nodessc` (`ID`, `Type`, `Name`, `Description`) VALUES (61, 1, '东门', '大门');
