@@ -9,7 +9,7 @@
             <div class="input-container">
                 <input class="input1" type="text" v-model="searchTitle" placeholder="搜索标题">
                 <input class="input2" type="text" v-model="searchAuthor" placeholder="搜索作者名">
-                <input class="input3" type="text" v-model="searchDescription" placeholder="搜索描述对象">
+                <input class="input3" type="text" v-model="searchDescription" placeholder="搜索目的地">
                 <input class="input4" type="text" v-model="searchContent" placeholder="搜索内容">
             </div>
             <!-- 排序选择 -->

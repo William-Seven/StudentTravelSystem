@@ -1,7 +1,7 @@
 //
 // Created by SevenGrass on 2024/5/20.
 //
-#include"Kmp.h"
+#include "Kmp.h"
 
 void get_nextval(std::string t, int nextval[]) {
     int j = 0, k = -1;
@@ -22,7 +22,8 @@ void get_nextval(std::string t, int nextval[]) {
 bool kmp(std::string t, std::string s) {
     if (t == "-1")
         return 1;
-    int line_limit = t.length();
+    int line_limit;
+    line_limit = t.length();
     int nextval[line_limit];
     int i = 0, j = 0;
     int s_len = s.length(), t_len = t.length();

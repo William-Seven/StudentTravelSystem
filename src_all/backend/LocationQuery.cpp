@@ -2,6 +2,7 @@
 #include <cmath>
 #include "Algorithms.h"
 #include "Graph.h"
+#include "Kmp.h"
 
 LocationQuery::LocationQuery(Graph& g)
     : graph(g) {}
@@ -35,7 +36,7 @@ std::vector<Node*> LocationQuery::filterResultsByCategory(std::vector<Node*> res
     std::vector<Node*> filteredResults;
 
     for (const auto& facility : results)
-        if (facility->getDescription() == category)
+        if (kmp(category, facility->getDescription()))
             filteredResults.push_back(facility);
 
     return filteredResults;
