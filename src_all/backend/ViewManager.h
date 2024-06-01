@@ -11,4 +11,5 @@ class ViewManager {
     void Recommendation(int obj, int quan, int mo, std::string s_s);
     void getScore(int a, int b);
     void q_sort(int left, int right);
+    std::vector<View> selectSort(int length,int obj,std::string search_string);
 };

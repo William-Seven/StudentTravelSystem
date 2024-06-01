@@ -7,6 +7,9 @@
 
 #define TEST_MAXSIZE 221
 
+// void get_nextval(std::string t, int nextval[]);
+// bool kmp(std::string t, std::string s);
+
 /*获取景点数组*/
 void ViewManager::getViews() {
     /*
@@ -64,16 +67,9 @@ void ViewManager::Recommendation(int obj, int quan, int mo, std::string s_s) {
         if (object == 0) {
             if (quantity == 0) {
                 getScore(1, 0);
-                q_sort(0, TEST_MAXSIZE);
-                for (i = 0, j = 0; i < 10 && j < TEST_MAXSIZE; i++, j++) {
-                    while (views[j].Type != "attraction" || !kmp(search_string, views[j].Name)) {
-                        j++;
-                        if (j >= TEST_MAXSIZE)
-                            break;
-                    }
-                    if (j >= TEST_MAXSIZE)
-                        break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << "\n";
+                std::vector<View> filteredViews = selectSort(TEST_MAXSIZE, object, search_string);
+                for (i = 0; i < 10 && i < filteredViews.size(); i++) {
+                    std::cout << filteredViews[i].LocationID << " " << filteredViews[i].Name << " " << filteredViews[i].Type << " " << filteredViews[i].Popularity << " " << filteredViews[i].Ratings << "\n";
                 }
             } else if (quantity == 1) {
                 getScore(1, 0);
@@ -92,16 +88,9 @@ void ViewManager::Recommendation(int obj, int quan, int mo, std::string s_s) {
         } else if (object == 1) {
             if (quantity == 0) {
                 getScore(1, 0);
-                q_sort(0, TEST_MAXSIZE);
-                for (i = 0, j = 0; i < 10 && j < TEST_MAXSIZE; i++, j++) {
-                    while (views[j].Type != "school" || !kmp(search_string, views[j].Name)) {
-                        j++;
-                        if (j >= TEST_MAXSIZE)
-                            break;
-                    }
-                    if (j >= TEST_MAXSIZE)
-                        break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << "\n";
+                std::vector<View> filteredViews = selectSort(TEST_MAXSIZE, object, search_string);
+                for (i = 0; i < 10 && i < filteredViews.size(); i++) {
+                    std::cout << filteredViews[i].LocationID << " " << filteredViews[i].Name << " " << filteredViews[i].Type << " " << filteredViews[i].Popularity << " " << filteredViews[i].Ratings << "\n";
                 }
             } else if (quantity == 1) {
                 getScore(1, 0);
@@ -120,16 +109,9 @@ void ViewManager::Recommendation(int obj, int quan, int mo, std::string s_s) {
         } else if (object == 2) {
             if (quantity == 0) {
                 getScore(1, 0);
-                q_sort(0, TEST_MAXSIZE);
-                for (i = 0, j = 0; i < 10 && j < TEST_MAXSIZE; i++, j++) {
-                    while (!kmp(search_string, views[j].Name)) {
-                        j++;
-                        if (j >= TEST_MAXSIZE)
-                            break;
-                    }
-                    if (j >= TEST_MAXSIZE)
-                        break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << "\n";
+                std::vector<View> filteredViews = selectSort(TEST_MAXSIZE, object, search_string);
+                for (i = 0; i < 10 && i < filteredViews.size(); i++) {
+                    std::cout << filteredViews[i].LocationID << " " << filteredViews[i].Name << " " << filteredViews[i].Type << " " << filteredViews[i].Popularity << " " << filteredViews[i].Ratings << "\n";
                 }
             } else if (quantity == 1) {
                 getScore(1, 0);
@@ -150,16 +132,9 @@ void ViewManager::Recommendation(int obj, int quan, int mo, std::string s_s) {
         if (object == 0) {
             if (quantity == 0) {
                 getScore(0, 1);
-                q_sort(0, TEST_MAXSIZE);
-                for (i = 0, j = 0; i < 10 && j < TEST_MAXSIZE; i++, j++) {
-                    while (views[j].Type != "attraction" || !kmp(search_string, views[j].Name)) {
-                        j++;
-                        if (j >= TEST_MAXSIZE)
-                            break;
-                    }
-                    if (j >= TEST_MAXSIZE)
-                        break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << "\n";
+                std::vector<View> filteredViews = selectSort(TEST_MAXSIZE, object, search_string);
+                for (i = 0; i < 10 && i < filteredViews.size(); i++) {
+                    std::cout << filteredViews[i].LocationID << " " << filteredViews[i].Name << " " << filteredViews[i].Type << " " << filteredViews[i].Popularity << " " << filteredViews[i].Ratings << "\n";
                 }
             } else if (quantity == 1) {
                 getScore(0, 1);
@@ -178,16 +153,9 @@ void ViewManager::Recommendation(int obj, int quan, int mo, std::string s_s) {
         } else if (object == 1) {
             if (quantity == 0) {
                 getScore(0, 1);
-                q_sort(0, TEST_MAXSIZE);
-                for (i = 0, j = 0; i < 10 && j < TEST_MAXSIZE; i++, j++) {
-                    while (views[j].Type != "school" || !kmp(search_string, views[j].Name)) {
-                        j++;
-                        if (j >= TEST_MAXSIZE)
-                            break;
-                    }
-                    if (j >= TEST_MAXSIZE)
-                        break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << "\n";
+                std::vector<View> filteredViews = selectSort(TEST_MAXSIZE, object, search_string);
+                for (i = 0; i < 10 && i < filteredViews.size(); i++) {
+                    std::cout << filteredViews[i].LocationID << " " << filteredViews[i].Name << " " << filteredViews[i].Type << " " << filteredViews[i].Popularity << " " << filteredViews[i].Ratings << "\n";
                 }
             } else if (quantity == 1) {
                 getScore(0, 1);
@@ -206,16 +174,9 @@ void ViewManager::Recommendation(int obj, int quan, int mo, std::string s_s) {
         } else if (object == 2) {
             if (quantity == 0) {
                 getScore(0, 1);
-                q_sort(0, TEST_MAXSIZE);
-                for (i = 0, j = 0; i < 10 && j < TEST_MAXSIZE; i++, j++) {
-                    while (!kmp(search_string, views[j].Name)) {
-                        j++;
-                        if (j >= TEST_MAXSIZE)
-                            break;
-                    }
-                    if (j >= TEST_MAXSIZE)
-                        break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << "\n";
+                std::vector<View> filteredViews = selectSort(TEST_MAXSIZE, object, search_string);
+                for (i = 0; i < 10 && i < filteredViews.size(); i++) {
+                    std::cout << filteredViews[i].LocationID << " " << filteredViews[i].Name << " " << filteredViews[i].Type << " " << filteredViews[i].Popularity << " " << filteredViews[i].Ratings << "\n";
                 }
             } else if (quantity == 1) {
                 getScore(0, 1);
@@ -234,16 +195,9 @@ void ViewManager::Recommendation(int obj, int quan, int mo, std::string s_s) {
         } else if (object == 2) {
             if (quantity == 0) {
                 getScore(1, 0);
-                q_sort(0, TEST_MAXSIZE);
-                for (i = 0, j = 0; i < 10 && j < TEST_MAXSIZE; i++, j++) {
-                    while (!kmp(search_string, views[j].Name)) {
-                        j++;
-                        if (j >= TEST_MAXSIZE)
-                            break;
-                    }
-                    if (j >= TEST_MAXSIZE)
-                        break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << "\n";
+                std::vector<View> filteredViews = selectSort(TEST_MAXSIZE, object, search_string);
+                for (i = 0; i < 10 && i < filteredViews.size(); i++) {
+                    std::cout << filteredViews[i].LocationID << " " << filteredViews[i].Name << " " << filteredViews[i].Type << " " << filteredViews[i].Popularity << " " << filteredViews[i].Ratings << "\n";
                 }
             } else if (quantity == 1) {
                 getScore(1, 0);
@@ -264,16 +218,9 @@ void ViewManager::Recommendation(int obj, int quan, int mo, std::string s_s) {
         if (object == 0) {
             if (quantity == 0) {
                 getScore(3, 7);
-                q_sort(0, TEST_MAXSIZE);
-                for (i = 0, j = 0; i < 10 && j < TEST_MAXSIZE; i++, j++) {
-                    while (views[j].Type != "attraction" || !kmp(search_string, views[j].Name)) {
-                        j++;
-                        if (j >= TEST_MAXSIZE)
-                            break;
-                    }
-                    if (j >= TEST_MAXSIZE)
-                        break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << "\n";
+                std::vector<View> filteredViews = selectSort(TEST_MAXSIZE, object, search_string);
+                for (i = 0; i < 10 && i < filteredViews.size(); i++) {
+                    std::cout << filteredViews[i].LocationID << " " << filteredViews[i].Name << " " << filteredViews[i].Type << " " << filteredViews[i].Popularity << " " << filteredViews[i].Ratings << "\n";
                 }
             } else if (quantity == 1) {
                 getScore(3, 7);
@@ -292,16 +239,9 @@ void ViewManager::Recommendation(int obj, int quan, int mo, std::string s_s) {
         } else if (object == 1) {
             if (quantity == 0) {
                 getScore(3, 7);
-                q_sort(0, TEST_MAXSIZE);
-                for (i = 0, j = 0; i < 10 && j < TEST_MAXSIZE; i++, j++) {
-                    while (views[j].Type != "school" || !kmp(search_string, views[j].Name)) {
-                        j++;
-                        if (j >= TEST_MAXSIZE)
-                            break;
-                    }
-                    if (j >= TEST_MAXSIZE)
-                        break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << "\n";
+                std::vector<View> filteredViews = selectSort(TEST_MAXSIZE, object, search_string);
+                for (i = 0; i < 10 && i < filteredViews.size(); i++) {
+                    std::cout << filteredViews[i].LocationID << " " << filteredViews[i].Name << " " << filteredViews[i].Type << " " << filteredViews[i].Popularity << " " << filteredViews[i].Ratings << "\n";
                 }
             } else if (quantity == 1) {
                 getScore(3, 7);
@@ -320,16 +260,9 @@ void ViewManager::Recommendation(int obj, int quan, int mo, std::string s_s) {
         } else if (object == 2) {
             if (quantity == 0) {
                 getScore(3, 7);
-                q_sort(0, TEST_MAXSIZE);
-                for (i = 0, j = 0; i < 10 && j < TEST_MAXSIZE; i++, j++) {
-                    while (!kmp(search_string, views[j].Name)) {
-                        j++;
-                        if (j >= TEST_MAXSIZE)
-                            break;
-                    }
-                    if (j >= TEST_MAXSIZE)
-                        break;
-                    std::cout << views[j].LocationID << " " << views[j].Name << " " << views[j].Type << " " << views[j].Popularity << " " << views[j].Ratings << "\n";
+                std::vector<View> filteredViews = selectSort(TEST_MAXSIZE, object, search_string);
+                for (i = 0; i < filteredViews.size(); i++) {
+                    std::cout << filteredViews[i].LocationID << " " << filteredViews[i].Name << " " << filteredViews[i].Type << " " << filteredViews[i].Popularity << " " << filteredViews[i].Ratings << "\n";
                 }
             } else if (quantity == 1) {
                 getScore(3, 7);
@@ -384,3 +317,70 @@ void ViewManager::q_sort(int left, int right) {
     if (right > i)
         q_sort(i, right);
 }
+
+std::vector<View> ViewManager::selectSort(int length, int object, std::string search_string) {
+    std::vector<View> filteredViews;
+    if (object == 0) {
+        for (int i = 0; i < length; i++)
+            if (views[i].Type == "attraction" && kmp(search_string, views[i].Name))
+                filteredViews.push_back(views[i]);
+    } else if (object == 1) {
+        for (int i = 0; i < length; i++)
+            if (views[i].Type == "school" && kmp(search_string, views[i].Name))
+                filteredViews.push_back(views[i]);
+    } else if (object == 2) {
+        for (int i = 0; i < length; i++)
+            if (kmp(search_string, views[i].Name))
+                filteredViews.push_back(views[i]);
+    }
+    int index;
+    for (int i = 0; i < filteredViews.size() && i < 10; i++) {
+        index = i;
+        for (int j = i + 1; j < filteredViews.size(); j++) {
+            if (filteredViews[j].Score > filteredViews[index].Score)
+                index = j;
+        }
+        std::swap(filteredViews[i], filteredViews[index]);
+    }
+    return filteredViews;
+}
+
+/*获取nextval[t.length()]数组*/
+/*
+void get_nextval(std::string t, int nextval[]) {
+    int j = 0, k = -1;
+    int t_len = t.length();
+    nextval[0] = -1;
+    while (j < t_len)
+        if (k == -1 || t[j] == t[k]) {
+            j++;
+            k++;
+            if (t[j] != t[k])
+                nextval[j] = k;
+            else
+                nextval[j] = nextval[k];
+        } else
+            k = nextval[k];
+}
+*/
+/*在字符串s中查找字符串t第一次出现的下标*/
+/*
+bool kmp(std::string t, std::string s) {
+    if (t == "-1")
+        return 1;
+    int line_limit = t.length();
+    int nextval[line_limit];
+    int i = 0, j = 0;
+    int s_len = s.length(), t_len = t.length();
+    get_nextval(t, nextval);
+    while (i < s_len && j < t_len)
+        if (j == -1 || s[i] == t[j]) {
+            i++;
+            j++;
+        } else
+            j = nextval[j];
+    if (j >= t_len)
+        return true;
+    else
+        return false;
+}*/
