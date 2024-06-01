@@ -1,7 +1,6 @@
 #include <string.h>
 #include <iostream>
 #include "include/mysql.h"
-// using namespace std;
 
 // 函数声明
 bool isUsernameRegistered(MYSQL* conn, const std::string& username) {
@@ -96,8 +95,6 @@ int Login(int mode, std::string user, std::string pass, std::string pass_new) {
         std::cout << "连接数据库失败：" << mysql_error(&my_sql) << std::endl;
         exit(-1);
     }
-
-    //=====欢迎使用学生游学系统！=====
 
     int index = mode;
     // 1. 注册 2. 登录 3. 忘记密码 4. 修改密码 5. 其余为退出

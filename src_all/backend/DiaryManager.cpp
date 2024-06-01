@@ -95,14 +95,6 @@ void DiaryManager::diaryDownload() {
     std::string file = "D:\\Diarytemp.txt";
     FileCompress cps;
     cps.Compress(file.c_str());
-    // std::cout << "压缩成功！" << std::endl;
-    /*
-    if (c == 'y') {
-        //std::cout << "请输入下载的Diarytemp.zlx文件路径: (例：D:\\Diarytemp.zlx)" << std::endl;
-        std::cin >> file;
-        FileCompress cps;
-        cps.UnCompress(file.c_str());
-    */
 }
 
 // 文件解压

@@ -123,7 +123,6 @@ int main(int argc, char* argv[]) {
 
         Node* t = g.getNode(start);
         std::cout << "当前位置为：" << t->getName() << "\n";
-        // targets.push_back(start);
 
         // 输入途径点
         std::cout << "途径：";

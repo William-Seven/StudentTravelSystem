@@ -7,23 +7,8 @@
 
 #define TEST_MAXSIZE 221
 
-// void get_nextval(std::string t, int nextval[]);
-// bool kmp(std::string t, std::string s);
-
 /*获取景点数组*/
 void ViewManager::getViews() {
-    /*
-    View temp;
-    std::ifstream file("data1.txt");
-    if (file.is_open()) {
-        for (int i = 0; i < TEST_MAXSIZE && file >> temp.LocationID >> temp.Name >> temp.Type >> temp.Popularity >> temp.Ratings; ++i) {
-            views.push_back(temp);
-        }
-        file.close();  // 关闭文件
-    } else {
-        std::cerr << "Unable to open file" << "\n";
-    }
-    */
     MYSQL my_sql;
     MYSQL_RES* res;  // 查询结果集
     MYSQL_ROW row;   // 记录结构体
@@ -318,6 +303,7 @@ void ViewManager::q_sort(int left, int right) {
         q_sort(i, right);
 }
 
+// 选择排序，实现非全排列展示前十个
 std::vector<View> ViewManager::selectSort(int length, int object, std::string search_string) {
     std::vector<View> filteredViews;
     if (object == 0) {
@@ -344,43 +330,3 @@ std::vector<View> ViewManager::selectSort(int length, int object, std::string se
     }
     return filteredViews;
 }
-
-/*获取nextval[t.length()]数组*/
-/*
-void get_nextval(std::string t, int nextval[]) {
-    int j = 0, k = -1;
-    int t_len = t.length();
-    nextval[0] = -1;
-    while (j < t_len)
-        if (k == -1 || t[j] == t[k]) {
-            j++;
-            k++;
-            if (t[j] != t[k])
-                nextval[j] = k;
-            else
-                nextval[j] = nextval[k];
-        } else
-            k = nextval[k];
-}
-*/
-/*在字符串s中查找字符串t第一次出现的下标*/
-/*
-bool kmp(std::string t, std::string s) {
-    if (t == "-1")
-        return 1;
-    int line_limit = t.length();
-    int nextval[line_limit];
-    int i = 0, j = 0;
-    int s_len = s.length(), t_len = t.length();
-    get_nextval(t, nextval);
-    while (i < s_len && j < t_len)
-        if (j == -1 || s[i] == t[j]) {
-            i++;
-            j++;
-        } else
-            j = nextval[j];
-    if (j >= t_len)
-        return true;
-    else
-        return false;
-}*/

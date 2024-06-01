@@ -25,7 +25,6 @@ std::vector<Node*> LocationQuery::findNearbyFacilities(Node* location, double ra
         if (distance <= radius) {
             facility->setDistance(distance);
             nearbyFacilities.push_back(facility);
-            // distances.push_back(distance);
         }
     }
 

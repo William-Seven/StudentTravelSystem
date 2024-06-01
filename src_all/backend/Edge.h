@@ -38,9 +38,6 @@ class Edge {
     // 获取边的拥挤度
     double getCongestion() const;
 
-    // 获取边的交通工具类型
-    // const std::string& getRoadType() const;
-
     // 获取边的交通工具速度
     double getSpeed() const;
 

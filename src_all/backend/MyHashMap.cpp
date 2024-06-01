@@ -68,7 +68,6 @@ Value* HashMap<Key, Value, HashFunc>::find(Key& key) {
             return &(cur->value);
         cur = cur->next;
     }
-    // std::cout << "Key not found!" << std::endl;
     return nullptr;
 }
 

@@ -27,10 +27,6 @@ void DiaryTest(int mode, std::string title, std::string author, std::string dest
     res = mysql_store_result(&my_sql);
     while (row = mysql_fetch_row(res)) {
         Diary temp(row[0], row[1], row[2], row[3]);
-        // temp.title = row[0];
-        // temp.authorID = row[1];
-        // temp.destination = row[2];
-        // temp.content = row[3];
         temp.popularity = std::stoi(row[4]);
         temp.rating = std::stoi(row[5]);
         diaryManager.addDiary(temp);

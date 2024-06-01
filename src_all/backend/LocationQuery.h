@@ -11,7 +11,6 @@ class LocationQuery {
    private:
     Graph& graph;
     std::vector<Node*> facilities;
-    // std::vector<double> distances;
 
    public:
     explicit LocationQuery(Graph& graph);

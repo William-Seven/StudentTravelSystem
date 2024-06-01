@@ -21,10 +21,6 @@ double Edge::getCongestion() const {
     return congestion;
 }
 
-// const std::string& Edge::getRoadType() const {
-//     return roadType;
-// }
-
 double Edge::getSpeed() const {
     return speed;
 }

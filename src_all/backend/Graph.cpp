@@ -6,16 +6,6 @@
 Graph::Graph(int size)
     : size(size), nodes(size) {}
 
-// 析构函数
-// Graph::~Graph() {
-//     // 遍历nodes哈希表，删除所有Node指针
-//     for (int i = 0; i < size; i++) {
-//         auto node = nodes[i];
-//         if (node)
-//             delete node;
-//     }
-// }
-
 // 添加节点
 void Graph::addNode(int id, Node::Type type, const std::string& name, const std::string& description) {
     if (nodes.find(id) == nullptr) {
@@ -49,23 +39,4 @@ void Graph::addEdge(const int& from, const int& to, double distance, double cong
 // 获取节点
 Node* Graph::getNode(int id) {
     return *(nodes.find(id));
-}
-
-// 生成图的距离矩阵，用于存储节点之间的距离
-std::vector<std::vector<double>> Graph::generateDistanceMatrix() {
-    int n = size;
-
-    // 初始化矩阵，默认填充INF表示无穷大
-    std::vector<std::vector<double>> dist(n, std::vector<double>(n, DNF));
-
-    for (int i = 0; i < size; i++) {
-        // 遍历当前节点所有的边
-        for (auto& edge : Graph::getNode(i)->edges) {
-            dist[i][edge->destination->id] = edge->distance;
-            dist[edge->destination->id][i] = edge->distance;  // 无向图，对称矩阵
-            // std::cout << dist[i][edge->destination->id] << std::endl;
-        }
-        dist[i][i] = 0;  // 节点到自身的距离为0
-    }
-    return dist;
 }

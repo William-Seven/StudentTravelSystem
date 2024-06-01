@@ -21,14 +21,10 @@ class Graph {
     void addNode(int id, Node::Type type, const std::string& name, const std::string& description);
 
     // 添加边
-    // void addEdge(const int& from, const int& to, double distance);
     void addEdge(const int& from, const int& to, double distance, double congestion, double speed, Edge::type transportMode);
 
     // 获取节点
     Node* getNode(int id);
-
-    // 生成图的距离矩阵，用于存储节点之间的距离
-    std::vector<std::vector<double>> generateDistanceMatrix();
 };
 
 #endif  // GRAPH_H

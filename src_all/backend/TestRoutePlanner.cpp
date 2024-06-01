@@ -29,11 +29,9 @@ int main(int argc, char* argv[]) {
     int count = 0;
     res = mysql_store_result(&my_sql);
     while (row = mysql_fetch_row(res)) {
-        // std::cout << "row:" << row[0] << " " << row[1] << " " << row[2] << std::endl;
         int id = std::stoi(row[0]);
         int type1 = std::stoi(row[1]);
         Node::Type type = static_cast<Node::Type>(type1);
-        // std::cout << id << " " << type << " " << row[2] << std::endl;
         g.addNode(id, type, row[2], row[3]);
         count++;
     }
@@ -51,11 +49,9 @@ int main(int argc, char* argv[]) {
         double congestion = std::stod(row[3]);
         double speed = std::stod(row[4]);
         Edge::type type = static_cast<Edge::type>(std::stoi(row[5]));
-        // std::cout << start << " " << end << " " << distance << " " << congestion << " " << speed << std::endl;
         g.addEdge(start, end, distance, congestion, speed, type);
     }
 
-    // 选择路线规划/多个途径点规划
     // 请输入路线规划方式（1-选择路线规划，2-多个途径点规划）
     std::string mode = argv[3];
     // std::cin >> mode;

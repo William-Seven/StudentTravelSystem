@@ -312,14 +312,14 @@ void FileCompress::SaveCode(FILE* dst, const std::string& FilePath) {
             code += ",";
             sprintf((char*)buf, "%lld", info[i].cnt);
             //_itoa((int)(info[i].cnt), (char *)buf, 10);
-            code += (char*)buf;  //////////////////////////////////////////
+            code += (char*)buf;
             code += "\n";
         }
     }
 
     sprintf((char*)buf, "%d", cnt);
     //_itoa(cnt, (char *)buf, 10);
-    output += (char*)buf;  ////////////////////////
+    output += (char*)buf;
     output += "\n";
     output += code;
 
