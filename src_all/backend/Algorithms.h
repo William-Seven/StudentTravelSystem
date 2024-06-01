@@ -25,11 +25,14 @@ class Algorithms {
     // Dijkstra算法，计算最快路径
     static PathResult findFastestPath(Graph& graph, int startNodeID, int endNodeID, int mode);
 
-    // TSP动态规划算法，计算途径点最短路径
-    // static PathResult findTspPath(std::vector<std::vector<double>>& dist, int startNodeID, std::vector<int>& targets);
-
-    // 暴力
+    // 暴力算法，全排列
     static PathResult findBruteForcePath(Graph& graph, int startNodeID, std::vector<int>& targets);
+
+    // 模拟退火
+    static PathResult simulatedAnnealing(Graph& completeGraph, int startNodeID, std::vector<int>& nodes);
+
+    // 构造完全图并使用模拟退火算法
+    static PathResult findOptimalPath(Graph& graph, int startNodeID, std::vector<int>& targets);
 };
 
 #endif  // ALGORITHMS_H

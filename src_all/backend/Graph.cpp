@@ -7,14 +7,14 @@ Graph::Graph(int size)
     : size(size), nodes(size) {}
 
 // 析构函数
-Graph::~Graph() {
-    // 遍历nodes哈希表，删除所有Node指针
-    for (int i = 0; i < size; i++) {
-        auto node = nodes[i];
-        if (node)
-            delete node;
-    }
-}
+// Graph::~Graph() {
+//     // 遍历nodes哈希表，删除所有Node指针
+//     for (int i = 0; i < size; i++) {
+//         auto node = nodes[i];
+//         if (node)
+//             delete node;
+//     }
+// }
 
 // 添加节点
 void Graph::addNode(int id, Node::Type type, const std::string& name, const std::string& description) {
@@ -29,25 +29,6 @@ void Graph::addNode(int id, Node::Type type, const std::string& name, const std:
     }
 }
 
-// 添加边
-/*
-void Graph::addEdge(const int& from, const int& to, double distance) {
-    Node* sourceNode = getNode(from);
-    Node* destinationNode = getNode(to);
-
-    if (sourceNode && destinationNode) {
-        // 添加从from到to的边
-        Edge* newEdge = new Edge(sourceNode, destinationNode, distance, 0, TransportMode::WALK, 0);
-        sourceNode->addEdge(newEdge);
-
-        // 无向图，添加从to到from的边
-        Edge* newEdge2 = new Edge(destinationNode, sourceNode, distance, 0, TransportMode::WALK, 0);
-        destinationNode->addEdge(newEdge2);
-    } else {
-        std::cout << "Either source or destination node does not exist." << std::endl;
-    }
-}
-*/
 void Graph::addEdge(const int& from, const int& to, double distance, double congestion, double speed, Edge::type transportMode) {
     Node* sourceNode = getNode(from);     // 获取源节点
     Node* destinationNode = getNode(to);  // 获取目标节点

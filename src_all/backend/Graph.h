@@ -15,7 +15,7 @@ class Graph {
     HashMap<int, Node*, HashFunc> nodes;  // 存储图里的所有节点
 
     Graph(int size);
-    ~Graph();
+    // ~Graph();
 
     // 添加节点
     void addNode(int id, Node::Type type, const std::string& name, const std::string& description);

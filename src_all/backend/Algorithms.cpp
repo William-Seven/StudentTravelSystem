@@ -1,10 +1,20 @@
 #include "Algorithms.h"
 #include <algorithm>
+#include <cmath>
+#include <ctime>
 #include <limits>
+#include <map>
+#include <random>
 #include <stack>
+#include <utility>
 
 #define DNF std::numeric_limits<double>::max()  // 定义一个无限大的值用于表示无法到达
 #define INF std::numeric_limits<int>::max()     // 定义一个无限大的值用于表示无法到达
+
+// 模拟退火算法相关参数
+const double START_TEMPERATURE = 50000.0;
+const double END_TEMPERATURE = 1.0;
+const double COOLING_RATE = 0.998;
 
 // 辅助函数，用于找到尚未访问的具有最小距离（时间）的节点
 int findMinDistanceNode(HashMap<int, double, HashFunc>& distance, HashMap<int, bool, HashFunc>& visited, int size) {
@@ -132,72 +142,6 @@ Algorithms::PathResult Algorithms::findFastestPath(Graph& graph, int startNodeID
     return result;  // 返回路径结果对象
 }
 
-// TSP途径点最短路径
-/*
-Algorithms::PathResult Algorithms::findTspPath(std::vector<std::vector<double>>& dist, int startNodeID, std::vector<int>& targets) {
-    int n = dist.size();          // 所有节点总数
-    int t_size = targets.size();  // 途径点数量
-    PathResult result;
-    // 计算所有目标节点都被访问的掩码值
-    int VISITED_ALL = (1 << t_size) - 1;
-
-    // 初始化一个二维 DP 表格，每个位置的值默认设置为无穷大
-    std::vector<std::vector<double>> dp(1 << t_size, std::vector<double>(t_size, DNF));
-    // 初始化路径追踪表格
-    std::vector<std::vector<int>> path(1 << t_size, std::vector<int>(t_size, -1));
-
-    // 初始化 DP 表，从起始点开始
-    dp[1 << 0][0] = 0;
-    for (int i = 0; i <= VISITED_ALL; i++)
-        dp[1 << i][i] = dist[targets[i]][startNodeID];
-
-    // 遍历所有可能的目标节点子集组合
-    for (int mask = 0; mask <= VISITED_ALL; mask++) {
-        for (int i = 0; i < t_size; ++i) {
-            // 检查目标节点 i 是否在当前子集中,如果包含（不执行continue）
-            if (!(mask & (1 << i)))
-                continue;
-
-            // 遍历所有可能的上一个目标节点
-            for (int j = 0; j < t_size; ++j) {
-                // 排除 i 自己或 j 不在当前子集内的情况
-                if (i == j || !(mask & (1 << j)))
-                    continue;
-
-                // 计算移除当前节点 i 后的子集组合
-                int prev_mask = mask ^ (1 << i);
-                double new_cost = dp[prev_mask][j] + dist[targets[j]][targets[i]];
-
-                // 更新 DP 表格中的值，选择更小的路径成本
-                if (new_cost <= dp[mask][i]) {
-                    dp[mask][i] = new_cost;
-                    path[mask][i] = j;
-                }
-                // dp[mask][i] = std::min(dp[mask][i], dp[prev_mask][j] + dist[targets[j]][targets[i]]);
-            }
-        }
-    }
-
-    // 计算返回起始点的最小成本+路径
-    double min_cost = dp[VISITED_ALL][0];
-    int last_node = 0;
-    std::vector<int> order;
-    int mask = VISITED_ALL;
-    order.push_back(targets[last_node]);
-    while (path[mask][last_node] != -1) {
-        last_node = path[mask][last_node];
-        mask ^= (1 << last_node);
-        order.push_back(targets[last_node]);
-    }
-    std::reverse(order.begin(), order.end());
-
-    result.length = min_cost;
-    std::cout << min_cost << std::endl;
-    result.path = order;
-
-    return result;
-}
-*/
 void permutations(Algorithms::PathResult& result, Graph& graph, int startNodeID, std::vector<int> arr, int l, int r) {
     if (l == r) {
         // 基础条件：如果左右指针相遇
@@ -241,7 +185,7 @@ void permutations(Algorithms::PathResult& result, Graph& graph, int startNodeID,
     }
 }
 
-// 暴力
+// 暴力算法，全排列
 Algorithms::PathResult Algorithms::findBruteForcePath(Graph& graph, int startNodeID, std::vector<int>& targets) {
     PathResult result;
     int size = targets.size();
@@ -249,4 +193,110 @@ Algorithms::PathResult Algorithms::findBruteForcePath(Graph& graph, int startNod
     permutations(result, graph, startNodeID, targets, 0, size - 1);
 
     return result;
+}
+
+// 模拟退火算法
+Algorithms::PathResult Algorithms::simulatedAnnealing(Graph& completeGraph, int startNodeID, std::vector<int>& nodes) {
+    // 随机数生成器
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dis(0.0, 1.0);
+
+    // 初始化路径和路径长度
+    Algorithms::PathResult currentResult;
+    currentResult.path = nodes;
+    currentResult.path.insert(currentResult.path.begin(), startNodeID);
+    currentResult.path.push_back(startNodeID);
+
+    for (int i = 0; i < currentResult.path.size() - 1; ++i)
+        for (auto edg : completeGraph.getNode(currentResult.path[i])->edges)
+            if (edg->getTo()->id == currentResult.path[i + 1]) {
+                currentResult.length += edg->getLength();
+                break;
+            }
+
+    Algorithms::PathResult bestResult = currentResult;
+
+    double temperature = START_TEMPERATURE;
+
+    // 退火过程
+    while (temperature > END_TEMPERATURE) {
+        std::vector<int> newPath = currentResult.path;
+
+        // 扰动
+        int i = 1 + rand() % (newPath.size() - 2);  // 避免改变起点和终点
+        int j = 1 + rand() % (newPath.size() - 2);
+        std::swap(newPath[i], newPath[j]);
+
+        Algorithms::PathResult newResult;
+        newResult.path = newPath;
+        for (int i = 0; i < newResult.path.size() - 1; ++i)
+            for (auto edgs : completeGraph.getNode(newResult.path[i])->edges)
+                if (edgs->getTo()->id == newResult.path[i + 1]) {
+                    newResult.length += edgs->getLength();
+                    break;
+                }
+
+        double delta = newResult.length - currentResult.length;
+        if (delta < 0 || dis(gen) < exp(-delta / temperature))
+            currentResult = newResult;
+
+        if (currentResult.length < bestResult.length)
+            bestResult = currentResult;
+
+        temperature *= COOLING_RATE;
+    }
+
+    return bestResult;
+}
+
+// 构造完全图并使用模拟退火算法
+Algorithms::PathResult Algorithms::findOptimalPath(Graph& graph, int startNodeID, std::vector<int>& targets) {
+    // 构造完全图
+    int n = targets.size();
+    Graph completeGraph(n + 1);                             // 包含起点和所有目标点
+    std::map<std::pair<int, int>, std::vector<int>> paths;  // 存放完全图路径
+
+    // 完全图节点添加
+    Node* t = graph.getNode(startNodeID);
+    completeGraph.addNode(startNodeID, t->getType(), t->getName(), t->getDescription());
+    for (int i = 0; i < n; i++) {
+        Node* temp = graph.getNode(targets[i]);
+        completeGraph.addNode(targets[i], temp->getType(), temp->getName(), temp->getDescription());
+    }
+
+    // 完全图路径添加
+    for (int i = 0; i < n; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            Algorithms::PathResult result = Algorithms::findShortestPath(graph, targets[i], targets[j]);
+            completeGraph.addEdge(targets[i], targets[j], result.length, 0, 0, Edge::type::WALK);
+            std::pair<int, int> key1(targets[i], targets[j]);
+            std::pair<int, int> key2(targets[j], targets[i]);
+            paths.insert(std::make_pair(key1, result.path));
+            std::reverse(result.path.begin(), result.path.end());
+            paths.insert(std::make_pair(key2, result.path));
+        }
+        Algorithms::PathResult resultStart = Algorithms::findShortestPath(graph, startNodeID, targets[i]);
+        completeGraph.addEdge(startNodeID, targets[i], resultStart.length, 0, 0, Edge::type::WALK);
+        std::pair<int, int> key1(startNodeID, targets[i]);
+        std::pair<int, int> key2(targets[i], startNodeID);
+        paths.insert(std::make_pair(key1, resultStart.path));
+        std::reverse(resultStart.path.begin(), resultStart.path.end());
+        paths.insert(std::make_pair(key2, resultStart.path));
+    }
+
+    // 模拟退火求解
+    Algorithms::PathResult ret = simulatedAnnealing(completeGraph, startNodeID, targets);
+
+    // 根据途径点的顺序，添加中间的node
+    std::vector<int> finalpath;
+    for (int i = 0; i < ret.path.size() - 1; i++) {
+        std::pair<int, int> key(ret.path[i], ret.path[i + 1]);
+        auto it = paths.find(key);
+        finalpath.insert(finalpath.end(), it->second.begin(), it->second.end() - 1);
+    }
+    finalpath.push_back(ret.path.back());
+    ret.path = finalpath;
+
+    return ret;
 }

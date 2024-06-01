@@ -123,12 +123,11 @@ int main(int argc, char* argv[]) {
     } else {
         std::vector<int> targets;
 
-        // std::cout << "请输入当前位置id：";
+        // 当前位置id
         int start = std::stoi(argv[4]);
 
         Node* t = g.getNode(start);
         std::cout << "当前位置为：" << t->getName() << "\n";
-        // targets.push_back(start);
 
         // 输入途径点
         std::cout << "途径：";
@@ -139,42 +138,42 @@ int main(int argc, char* argv[]) {
             targets.push_back(target);
         }
 
-        // 使用暴力算法
-        Algorithms::PathResult fspPathResult = Algorithms::findBruteForcePath(g, start, targets);
+        if (targets.size() <= 5) {
+            // 使用暴力算法
+            Algorithms::PathResult fspPathResult = Algorithms::findBruteForcePath(g, start, targets);
 
-        // 输出结果
-        std::cout << "\n最短路线长度为: " << fspPathResult.length << " 米\n";
-        int flag = 0;
-        for (int nodeID : fspPathResult.path) {
-            if (flag == 0) {
-                Node* ntemp = g.getNode(nodeID);
-                std::cout << nodeID << ". " << ntemp->getName();
-                flag = 1;
-            } else {
-                Node* ntemp = g.getNode(nodeID);
-                std::cout << " --> " << nodeID << ". " << ntemp->getName();
-            }
-        }
-        std::cout << "\n";
-        /*
-                // 生成距离矩阵
-                auto dist = g.generateDistanceMatrix();
-
-                // 使用算法寻找最短路径
-                Algorithms::PathResult TspPathResult = Algorithms::findTspPath(dist, start, targets);
-
-                // 打印结果
-                std::cout << "Shortest path length: " << TspPathResult.length << " meters" << std::endl;
-                int flag = 0;
-                for (int nodeID : TspPathResult.path) {
-                    if (flag == 0) {
-                        std::cout << nodeID;
-                        flag = 1;
-                    } else {
-                        std::cout << " --> " << nodeID;
-                    }
+            // 输出结果
+            std::cout << "\n最短路线长度为: " << fspPathResult.length << " 米\n";
+            int flag = 0;
+            for (int nodeID : fspPathResult.path) {
+                if (flag == 0) {
+                    Node* ntemp = g.getNode(nodeID);
+                    std::cout << nodeID << ". " << ntemp->getName();
+                    flag = 1;
+                } else {
+                    Node* ntemp = g.getNode(nodeID);
+                    std::cout << " --> " << nodeID << ". " << ntemp->getName();
                 }
-                std::cout << std::endl;
-            */
+            }
+            std::cout << "\n";
+        } else {
+            // 使用启发式算法————模拟退火
+            Algorithms::PathResult optimalPath = Algorithms::findOptimalPath(g, start, targets);
+
+            // 输出结果
+            std::cout << "\n最短路线长度为: " << optimalPath.length << " 米\n";
+            int flag = 0;
+            for (int nodeID : optimalPath.path) {
+                if (flag == 0) {
+                    Node* ntemp = g.getNode(nodeID);
+                    std::cout << nodeID << ". " << ntemp->getName();
+                    flag = 1;
+                } else {
+                    Node* ntemp = g.getNode(nodeID);
+                    std::cout << " --> " << nodeID << ". " << ntemp->getName();
+                }
+            }
+            std::cout << "\n";
+        }
     }
 }
