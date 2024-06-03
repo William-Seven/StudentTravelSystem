@@ -124,7 +124,7 @@ export default {
   padding: 0;
   background-attachment: fixed;
   overflow: hidden;
-  background-image: url('~@/assets/img/background.png');
+  background-image: url('~@/assets/img/diarydetail.jpg');
   background-size: cover;
 }
 
@@ -135,7 +135,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('~@/assets/img/background.png');
+  background-image: url('~@/assets/img/diarydetail.jpg');
   background-size: cover;
   background-attachment: fixed;
   z-index: -1; /* 确保背景层在内容层之下 */
@@ -145,7 +145,7 @@ export default {
   position: absolute;
   transform: translate(-50%, 0%);
   padding:2%;
-  top: 10%;
+  top: 3%;
   left:50%;
   width: 45%;
   min-height: 500px;

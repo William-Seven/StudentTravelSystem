@@ -178,7 +178,7 @@ export default {
   padding: 0;
   background-attachment: fixed;
   overflow: hidden;
-  background-image: url('~@/assets/img/background.png');
+  background-image: url('~@/assets/img/routeback.jpg');
   background-size: cover;
 }
 
@@ -189,7 +189,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('~@/assets/img/background.png');
+  background-image: url('~@/assets/img/routeback.jpg');
   background-size: cover;
   background-attachment: fixed;
   z-index: -1; /* 确保背景层在内容层之下 */

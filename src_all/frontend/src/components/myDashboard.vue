@@ -148,7 +148,7 @@ button:hover {
   padding: 0;
   background-attachment: fixed;
   overflow: hidden;
-  background-image: url('~@/assets/img/background.png');
+  background-image: url('~@/assets/img/homepage.jpg');
   background-size: cover;
 }
 
