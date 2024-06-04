@@ -5,7 +5,7 @@
 #include <vector>
 #include "Kmp.h"
 
-#define TEST_MAXSIZE 221
+#define TEST_MAXSIZE 318
 
 /*获取景点数组*/
 void ViewManager::getViews() {
