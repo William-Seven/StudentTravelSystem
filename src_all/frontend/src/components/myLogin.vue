@@ -20,8 +20,8 @@
         <input type="password" id="password" v-model="password" required>
       </div>
       <button class="login_button" type="submit">登录</button>
-      <p v-if="loginError">{{ loginError }}</p> <!-- 显示登录错误信息 -->
-      <p v-if="output">{{ output }}</p> <!-- 新增：显示从后端接收的输出 -->
+      <p class="error1" v-if="loginError">{{ loginError }}</p> <!-- 显示登录错误信息 -->
+      <p class="error2" v-if="output">{{ output }}</p> <!-- 新增：显示从后端接收的输出 -->
     </form>
   </div>
 </template>
@@ -177,6 +177,20 @@ button {
   transform: translateX(-50%);
   font-size: 1.5em;
   cursor: pointer;
+}
+
+.error1, .error2 {
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fefefe;
+  font-size: 1em; /* 设置字号大小 */
+  font-family: 'STKaiti', 'KaiTi', sans-serif; /* 优先使用华文楷体，如果不可用则使用无衬线字体 */
+  max-width: 80%;
+  text-align: center;
+  margin-left: auto; /* 左外边距自动 */
+  margin-right: auto; /* 右外边距自动 */
 }
 
 .login_button {
